@@ -6,18 +6,22 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegistrationComponent } from './components/registration/registration.component';
+import {CreditCardDirectivesModule} from "angular-cc-library";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    CreditCardDirectivesModule
   ],
   providers: [StubTokenService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

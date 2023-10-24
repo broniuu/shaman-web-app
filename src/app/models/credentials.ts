@@ -1,4 +1,3 @@
 export class Credentials {
-  public password: string = "";
-  public login: string = "";
+  constructor(public password: string, public login: string) {}
 }
