@@ -1,0 +1,16 @@
+<div class="mb-3">
+  <label class="form-label">{{label}}</label>
+  <input
+    [class.is-invalid]="ngControl.touched && ngControl.invalid"
+    type="{{type}}"
+    class="form-control"
+    [formControl]="$any(ngControl.control)"
+    placeholder="{{placeholder}}">
+  <div *ngIf="ngControl.control?.errors?.['required']" class="invalid-feedback">Please enter a {{label}}</div>
+  <div *ngIf="ngControl.control?.errors?.['minlength']" class="invalid-feedback">{{label}} must be at least {{ngControl.errors?.['minLength']['requiredLength']}}</div>
+  <div *ngIf="ngControl.control?.errors?.['maxlength']" class="invalid-feedback">{{label}} must be at most {{ngControl.errors?.['maxLength']['requiredLength']}}{{label}}</div>
+  <div *ngIf="ngControl.control?.errors?.['isMatching']" class="invalid-feedback">Passwords do not match</div>
+  <div *ngIf="ngControl.control?.errors?.['pattern']" class="invalid-feedback">{{label}} is wrong</div>
+  <div *ngIf="ngControl.control?.errors?.['email']" class="invalid-feedback">this is not valid email</div>
+  <ng-content select="[additional-content]"></ng-content>
+</div>

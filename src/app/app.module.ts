@@ -8,18 +8,22 @@ import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {CreditCardDirectivesModule} from "angular-cc-library";
+import {ReactiveFormsModule} from "@angular/forms";
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    TextInputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    ReactiveFormsModule
   ],
   providers: [StubTokenService],
   bootstrap: [AppComponent],

@@ -12,7 +12,7 @@ export class StubTokenService {
   constructor(private httpClient: HttpClient) { }
 
   public getAndSaveTokenToLocalStorage() :Observable<boolean> {
-    let credentials = new Credentials("jchocho", "haslo123");
+    let credentials = new Credentials("haslo123", "jchocho");
     return this.httpClient.post('http://localhost:8082/user/login', credentials).pipe(
       map((result: TokenContainer | any) => {
         if (result && result.value) {
