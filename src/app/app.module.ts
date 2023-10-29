@@ -6,9 +6,12 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RestaurantsComponent } from './restaurants/restaurants.component';
-import { DishesComponent } from './dishes/dishes.component';
-import { DishComponent } from './dish/dish.component';
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { DishesComponent } from './components/dishes/dishes.component';
+import { DishComponent } from './components/dish/dish.component';
+import { RestaurantItemComponent } from './components/restaurants/restaurant-item/restaurant-item.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import {FormsModule} from "@angular/forms";
 
 // @ts-ignore
 @NgModule({
@@ -16,13 +19,17 @@ import { DishComponent } from './dish/dish.component';
     AppComponent,
     RestaurantsComponent,
     DishesComponent,
-    DishComponent
+    DishComponent,
+    RestaurantItemComponent,
+    SearchBarComponent
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   providers: [StubTokenService],
   bootstrap: [AppComponent]
