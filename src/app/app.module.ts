@@ -6,10 +6,17 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { DishesComponent } from './dishes/dishes.component';
+import { DishComponent } from './dish/dish.component';
 
+// @ts-ignore
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RestaurantsComponent,
+    DishesComponent,
+    DishComponent
   ],
   imports: [
     BrowserModule,
@@ -20,4 +27,4 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [StubTokenService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
