@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegistrationComponent } from './components/registration/registration.component';
+import {CreditCardDirectivesModule} from "angular-cc-library";
+import {ReactiveFormsModule} from "@angular/forms";
+import { TextInputComponent } from './components/text-input/text-input.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { DishesComponent } from './components/dishes/dishes.component';
 import { DishComponent } from './components/dish/dish.component';
@@ -17,6 +21,8 @@ import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
+    RegistrationComponent,
+    TextInputComponent
     RestaurantsComponent,
     DishesComponent,
     DishComponent,
@@ -29,9 +35,11 @@ import {FormsModule} from "@angular/forms";
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    CreditCardDirectivesModule,
+    ReactiveFormsModule
     FormsModule
   ],
   providers: [StubTokenService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

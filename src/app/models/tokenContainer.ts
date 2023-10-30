@@ -1,3 +1,4 @@
 export class TokenContainer {
-  public _value: string = "";
+  constructor(public value: string) {
+  }
 }
