@@ -12,10 +12,10 @@ export class AppComponent implements OnInit{
   constructor(private stubTokeService: StubTokenService) {}
 
   ngOnInit(): void {
-    this.stubTokeService.getAndSaveTokenToLocalStorage().subscribe(() => {
-      let token = localStorage.getItem('token');
-      console.log(token);
-    });
+    // this.stubTokeService.getAndSaveTokenToLocalStorage().subscribe(() => {
+    //   let token = localStorage.getItem('token');
+    //   console.log(token);
+    // });
   }
 
 
