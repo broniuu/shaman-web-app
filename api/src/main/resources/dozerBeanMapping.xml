@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <custom-converters>
+            <converter type="com.example.shamanApi.converter.LocalDateConverter">
+                <class-a>java.time.LocalDate</class-a>
+                <class-b>java.time.LocalDate</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
+    <mapping type="one-way">
+        <class-a>java.util.UUID</class-a>
+        <class-b bean-factory="com.example.shamanApi.factory.UuidBeanFactory">java.util.UUID</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.example.shamanApi.model.User</class-a>
+        <class-b>com.example.shamanApi.dto.UserDto</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.example.shamanApi.model.Dish</class-a>
+        <class-b>com.example.shamanApi.dto.DishDto</class-b>
+    </mapping>
+    <mapping>
+        <class-a>com.example.shamanApi.model.CartItem</class-a>
+        <class-b>com.example.shamanApi.dto.CartItemDto</class-b>
+    </mapping>
+</mappings>

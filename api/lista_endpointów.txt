@@ -1,0 +1,35 @@
+RestaurantsController
+	/restaurants
+	/restaurants/nazwarestauracji
+	/restaurants/nazwarestauracji/dishes
+	/restaurants/nazwarestauracji/dishes/nazwadania
+
+
+UserCartController
+    {login}/usercart - wyświetlenie zawartości koszyka dla danego użytkownika
+    {login}/usercart/{cartItemId} - wyświetlenie jednego cartItema dla danego użytkownika
+	{login}/usercart/{dishId}/save/{count} - dodanie określonej określonej ilości dań do koszyka
+	    (lub zmiana ilości dania, jeśli już znajodwało się w koszyku) dla danego użytkownika
+	{login}/usercart/{cartItemId}/delete - usunięcie danego dania z koszyka dla danego użytkownika
+
+UserController
+	{login}/user/delete - usunięcie konta użyktownika
+	{login}/user/update - aktualizacja danych użytkownika
+	{login}/user - wyświetlenie danych zalogowanego użytkownika
+	/login - zalogowanie i zapisanie tokena
+	/register - dodanie urzytkownika do bazy danych
+
+Filip:
+	/register
+	/usercart/save
+	/usercart/delete
+	/usercart
+Kuba:
+	{login}/user/delete
+	{login}/user/update
+	{login}/user
+	/restaurants
+Kamil:
+	/login
+	/restaurants/nazwarestauracji
+	/restaurants/nazwarestauracji/dishes/nazwadania

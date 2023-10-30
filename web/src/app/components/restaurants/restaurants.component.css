@@ -1,0 +1,15 @@
+#restaurants {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px; /* Adjust as necessary for spacing between items */
+  justify-content: center;
+  justify-self: center;
+
+}
+
+app-restaurant-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Other styles as necessary */
+}
