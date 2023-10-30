@@ -17,9 +17,7 @@ export class RestaurantsComponent implements OnInit,OnDestroy{
 
   ngOnInit(): void {
     console.log("check+1")
-
      this.getAllRestaurants();
-
   }
 
 getAllRestaurants(){

@@ -1,6 +1,21 @@
-<article class="restaurant-item">
-    <h2>{{ restaurant.name }}</h2>
-    <p>Address: {{ restaurant.houseNumber }}</p>
-    <p>Street: {{ restaurant.street}}</p>
-    <p>Rating: {{ restaurant.score }}/5</p>
-</article>
+<div class="card" style="width: 18rem;">
+
+  <div class="image-container">
+    <img src="{{restaurant.backgroundImageUrl}}" alt="Background" class="background-image">
+    <img src="{{restaurant.imageUrl}}" alt="Center" class="center-image">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ restaurant.name }}</h5>
+    <p class="card-text"></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ restaurant.street}},{{ restaurant.houseNumber }}</li>
+    <li class="list-group-item">ocena: {{ restaurant.score }}/5</li>
+    <li class="list-group-item"> {{restaurant.location}}</li>
+
+  </ul>
+  <div class="card-body">
+    <a href="/Restaurant/{{restaurant.name}}" class="card-link">Sprawdź</a>
+    <a href="#" class="card-link">Zobacz na mapie</a>
+  </div>
+</div>
