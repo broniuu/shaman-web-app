@@ -1,18 +1,16 @@
-<div class="card" style="width: 18rem;">
-
-  <div class="image-container">
-    <img src="{{dish.imageUrl}}" alt="Center" class="center-image">
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{{ dish.name }}</h5>
-    <p class="card-text"></p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{ dish.price }}zl</li>
-    <li class="list-group-item"> {{dish.description}}</li>
-  </ul>
-  <div class="card-body">
-    <button (click)="onButtonClick(dish.name)" class="card-link">Szczegóły</button>
+<div style="display: flex;justify-content: center">
+  <div class="card mb-3" [ngStyle]="{'width.px':screenWidth}">
+    <img (click)="GotoDish(dish.name)"  [src]="dish.imageUrl"  [ngStyle]="{'width.px':screenWidth,'height.px':screenHeight}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{dish.name }}</h5>
+      <p class="card-text">{{ dish.description }}</p>
+      <div style="flex-direction: row;flex: 3;display: flex">
+        <h4 style="flex: 1" class="card-text"><small class="text-muted">{{ dish.price + ' zł' }}</small></h4>
+        <button (click)="addItemToCasket(dish.dishId)" style="flex: 2;background:{{Colors.second}}; border-radius: 20px" ><H4 style="color:{{Colors.main}}">Dodaj do koszyka</H4></button>
+      </div>
+    </div>
   </div>
 </div>
+
+
 

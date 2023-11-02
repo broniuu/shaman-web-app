@@ -16,7 +16,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;  /* Set to the width of your center image */
-  height: 90px; /* Set to the height of your center image */
+
   object-fit: contain;
+}
+.button{
+  flex: 1;
+  border-radius: 20px;
+
 }

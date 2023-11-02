@@ -17,6 +17,7 @@ import { RestaurantItemComponent } from './components/restaurants/restaurant-ite
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {FormsModule} from "@angular/forms";
 import { DishItemComponent } from './components/dishes/dish-item/dish-item.component';
+import {NgOptimizedImage} from "@angular/common";
 
 // @ts-ignore
 @NgModule({
@@ -31,16 +32,17 @@ import { DishItemComponent } from './components/dishes/dish-item/dish-item.compo
     SearchBarComponent,
     DishItemComponent
   ],
-  imports: [
+    imports: [
 
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    CreditCardDirectivesModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        CreditCardDirectivesModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgOptimizedImage
+    ],
   providers: [StubTokenService],
   bootstrap: [AppComponent],
 })

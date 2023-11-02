@@ -12,7 +12,6 @@ import {Observable} from "rxjs";
 export class RestaurantsComponent implements OnInit,OnDestroy{
  public restaurants: Restaurant[];
  public response:any;
-
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
