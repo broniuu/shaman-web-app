@@ -8,8 +8,8 @@ import {DishesComponent} from "./components/dishes/dishes.component";
 
 const routes: Routes = [{ path: '', component: AppComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
-  { path: 'Restaurant/:restaurantName/:p', component: DishesComponent },
-  { path: 'Restaurant/:restaurantName:/:dishName', component: DishComponent },
+  { path: 'Restaurants/:restaurantName/:p', component: DishesComponent },
+  { path: 'Restaurant/:restaurantName/:dishName', component: DishComponent },
   {
     path: 'register',
     component: RegistrationComponent

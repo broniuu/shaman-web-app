@@ -12,7 +12,6 @@ import {Colors} from "../../Colors";
 export class DishItemComponent implements OnInit {
   public screenWidth: number;
   public screenHeight: number;
-
   @Input() dish: Dish
   public url = "http://localhost:4200/Restaurant/"
   isLoggedIn: any;
@@ -24,8 +23,6 @@ export class DishItemComponent implements OnInit {
   getScreenSize(event?: Event) {
     this.screenWidth = window.innerWidth / 3;
     this.screenHeight = this.screenWidth * 0.7;
-
-
   }
 
   ngOnInit(): void {

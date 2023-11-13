@@ -1,8 +1,8 @@
 <div style="display: flex;justify-content: center">
   <div class="card mb-3" [ngStyle]="{'width.px':screenWidth}">
-    <img (click)="GotoDish(dish.name)"  [src]="dish.imageUrl"  [ngStyle]="{'width.px':screenWidth,'height.px':screenHeight}" class="card-img-top" alt="...">
+    <img (click)="GotoDish(dish.name)" [src]="dish.imageUrl" [ngStyle]="{'width.px':screenWidth,'height.px':screenHeight}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{dish.name }}</h5>
+      <h5  class="card-title">{{dish.name }}</h5>
       <p class="card-text">{{ dish.description }}</p>
       <div style="flex-direction: row;flex: 3;display: flex">
         <h4 style="flex: 1" class="card-text"><small class="text-muted">{{ dish.price + ' zł' }}</small></h4>

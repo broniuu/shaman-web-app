@@ -12,6 +12,8 @@ export class RestaurantItemComponent implements OnInit{
   @Input() restaurant: Restaurant;
   public screenWidth: number;
   public screenHeight: number;
+  isLoading: boolean = true;
+
   getScreenSize(event?: Event) {
     this.screenWidth = window.innerWidth / 3;
     this.screenHeight = this.screenWidth * 0.7;
@@ -24,7 +26,7 @@ export class RestaurantItemComponent implements OnInit{
   }
 
   GoToDishes(name: string) {
-    this.router.navigate([`/Restaurant/${name}/1`]);
+    this.router.navigate([`/Restaurants/${name}/1`]);
   }
 
   protected readonly Colors = Colors;

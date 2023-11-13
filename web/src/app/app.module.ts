@@ -18,6 +18,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import {FormsModule} from "@angular/forms";
 import { DishItemComponent } from './components/dishes/dish-item/dish-item.component';
 import {NgOptimizedImage} from "@angular/common";
+import { FilterTextPipe } from './pipes/filter-text.pipe';
 
 // @ts-ignore
 @NgModule({
@@ -30,7 +31,8 @@ import {NgOptimizedImage} from "@angular/common";
     DishComponent,
     RestaurantItemComponent,
     SearchBarComponent,
-    DishItemComponent
+    DishItemComponent,
+    FilterTextPipe
   ],
     imports: [
 
