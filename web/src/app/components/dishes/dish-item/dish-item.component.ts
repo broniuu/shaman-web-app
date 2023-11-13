@@ -12,13 +12,14 @@ import {Colors} from "../../Colors";
 export class DishItemComponent implements OnInit {
   public screenWidth: number;
   public screenHeight: number;
+  public blocekd:boolean=true;
+  public count:number=0;
   @Input() dish: Dish
   public url = "http://localhost:4200/Restaurant/"
   isLoggedIn: any;
 
   constructor(private route: ActivatedRoute, private router: Router) {
   }
-
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: Event) {
     this.screenWidth = window.innerWidth / 3;
@@ -38,6 +39,9 @@ export class DishItemComponent implements OnInit {
 
   addItemToCasket(dishId: any) {
 
+
+    this.count=0;
+    this.blocekd=true;
   }
 
   protected readonly auto = auto;
@@ -49,4 +53,30 @@ export class DishItemComponent implements OnInit {
     this.router.navigate([this.url + name]);
 
   }
+
+  Increase() {
+  if(this.count > 98 ){
+    return;
+  }
+  this.count++;
+    this.checkAndUnlock()
+  }
+
+  private checkAndUnlock() {
+    if(this.count>0){
+      this.blocekd=false;
+    }else{
+      this.blocekd=true;
+    }
+    console.log(this.blocekd)
+  }
+
+  Decrease() {
+    if(this.count < 1 ){
+      return;
+    }
+    this.count--;
+    this.checkAndUnlock()
+  }
+
 }

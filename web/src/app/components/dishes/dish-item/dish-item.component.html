@@ -6,7 +6,12 @@
       <p class="card-text">{{ dish.description }}</p>
       <div style="flex-direction: row;flex: 3;display: flex">
         <h4 style="flex: 1" class="card-text"><small class="text-muted">{{ dish.price + ' zł' }}</small></h4>
-        <button (click)="addItemToCasket(dish.dishId)" style="flex: 2;background:{{Colors.second}}; border-radius: 20px" ><H4 style="color:{{Colors.main}}">Dodaj do koszyka</H4></button>
+        <div style="flex-direction: row;margin: 10px">
+        <button (click)="Decrease()" [ngStyle]="{'color':Colors.main,'background':Colors.second}"  style="padding: 10px;border-top-left-radius: 20px;width: 40px;border-bottom-left-radius:20px; font-weight: bold; ">-</button>
+          <a style="padding: 10px;font-weight: bold">{{this.count}}</a>
+          <button (click)="Increase()" [ngStyle]="{'color':Colors.main,'background':Colors.second}"   style="font-weight: bold; width: 40px ;padding: 10px;border-top-right-radius: 20px;border-bottom-right-radius:20px; ">+</button>
+        </div>
+        <button  [disabled]="this.blocekd?true:null" [ngStyle]="{ 'color':Colors.main,'background':Colors.second}" (click)="addItemToCasket(dish.dishId)" style="flex: 2; border-radius: 20px" ><H4 >Dodaj do koszyka</H4></button>
       </div>
     </div>
   </div>
