@@ -16,6 +16,8 @@ import { DishComponent } from './components/dish/dish.component';
 import { RestaurantItemComponent } from './components/restaurants/restaurant-item/restaurant-item.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './components/login/login.component';
+import {NgOptimizedImage} from "@angular/common";
 
 // @ts-ignore
 @NgModule({
@@ -27,7 +29,8 @@ import {FormsModule} from "@angular/forms";
     DishesComponent,
     DishComponent,
     RestaurantItemComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    LoginComponent
   ],
   imports: [
 
@@ -37,7 +40,8 @@ import {FormsModule} from "@angular/forms";
     NgbModule,
     CreditCardDirectivesModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ],
   providers: [StubTokenService],
   bootstrap: [AppComponent],
