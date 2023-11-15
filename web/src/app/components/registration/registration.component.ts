@@ -4,6 +4,7 @@ import {CreditCardValidators} from "angular-cc-library";
 import {AccountService} from "../../services/account/account.service";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-registration',
@@ -29,6 +30,7 @@ export class RegistrationComponent implements OnInit{
 
   invalidValuesInAnyControl: boolean = false;
   errorOccuredDuringAddingUser: boolean = false;
+  errorMessage: string = "";
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) =>
       control?.value === control?.parent?.get(matchTo)?.value
@@ -37,6 +39,7 @@ export class RegistrationComponent implements OnInit{
 
   submit(): void {
     this.invalidValuesInAnyControl = false;
+    this.errorMessage = "";
     Object.keys(this.registerForm.controls).forEach(key => {
       const control = this.registerForm.get(key);
       if (control?.errors) {
@@ -61,8 +64,15 @@ export class RegistrationComponent implements OnInit{
     };
     this.accountService.register(user).subscribe({
       next: () => this.router.navigate(['/']),
-      error: () => this.errorOccuredDuringAddingUser = true
-    })
+      error: (err: HttpErrorResponse) => {
+        let apiError = err.error;
+        this.errorMessage = apiError.message;
+        this.errorOccuredDuringAddingUser = true;
+      }
+    });
+    if (this.errorOccuredDuringAddingUser && this.errorMessage === "") {
+      this.errorMessage = "Wystąpił błąd podczas dodawania użytkownika";
+    }
   }
 
   constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) {

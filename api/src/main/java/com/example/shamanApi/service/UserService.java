@@ -46,11 +46,11 @@ public class UserService implements IUserService{
     @Override
     public UserDto registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
         if (emailExists(userDto.getEmail())) {
-            throw new UserAlreadyExistException("There is an account with that email address: "
+            throw new UserAlreadyExistException("Istnieje już konto z tym adresem email: "
                     + userDto.getEmail());
         }
         if (loginExists(userDto.getLogin())) {
-            throw new UserAlreadyExistException("There is an account with that login: "
+            throw new UserAlreadyExistException("Istnieje już konto z tym loginem: "
                     + userDto.getLogin());
         }
         User userToRegister = mapper.map(userDto,User.class);
@@ -74,7 +74,7 @@ public class UserService implements IUserService{
     public User deleteUserAccount(String login) {
         User userToDelete = userRepository.findByLogin(login);
         if (userToDelete == null) {
-            throw new UserNotFoundException("There is no user with that login: "
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
         userRepository.delete(userToDelete);
@@ -92,7 +92,7 @@ public class UserService implements IUserService{
     public User updateUserAccount(String login, UserDto userDto) {
         User userToUpdate = userRepository.findByLogin(login);
         if (userToUpdate == null) {
-            throw new UserNotFoundException("There is no user with that login: "
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
         changeUserDtoToUser(userDto, userToUpdate);
@@ -127,7 +127,7 @@ public class UserService implements IUserService{
     @Override
     public User showUserAccount(String login) {
         if (userRepository.findByLogin(login) == null) {
-            throw new UserNotFoundException("There is no user with that login: "
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
         return userRepository.findByLogin(login);
