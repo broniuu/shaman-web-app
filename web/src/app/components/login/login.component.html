@@ -6,7 +6,9 @@
       </div>
       <app-text-input [formControl]="$any(loginForm.controls['login'])" [label]="'Login'" [placeholder]="'login'"></app-text-input>
       <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'Password'" [type]="'password'"></app-text-input>
-      <button class="btn btn-secondary">Login</button>
+      <div *ngIf="invalidValuesInAnyControl" class="text-center text-danger">Pola zostały niepoprawnie wypełnione</div>
+      <div *ngIf="errorOccurredDuringLogin" class="text-center text-danger">{{errorMessage}}</div>
+      <button class="btn btn-secondary" (click)="login()">Login</button>
     </form>
   </div>
 </div>
