@@ -21,6 +21,7 @@ public class GlobalExceptionHandler {
      * @return          enkapsulowana wiadomość o błędzie
      */
     @ExceptionHandler(value = UserAlreadyExistException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public ErrorMessage handleUserAlreadyExistsException(UserAlreadyExistException exception, WebRequest request)
     {
         ErrorMessage message = new ErrorMessage(

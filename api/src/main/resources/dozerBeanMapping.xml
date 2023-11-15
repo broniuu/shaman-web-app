@@ -27,4 +27,8 @@
         <class-a>com.example.shamanApi.model.CartItem</class-a>
         <class-b>com.example.shamanApi.dto.CartItemDto</class-b>
     </mapping>
+    <mapping>
+        <class-a>com.example.shamanApi.model.Role</class-a>
+        <class-b>com.example.shamanApi.dto.RoleDto</class-b>
+    </mapping>
 </mappings>

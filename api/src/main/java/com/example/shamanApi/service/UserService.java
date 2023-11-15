@@ -3,7 +3,9 @@ package com.example.shamanApi.service;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UserAlreadyExistException;
 import com.example.shamanApi.exception.UserNotFoundException;
+import com.example.shamanApi.model.Role;
 import com.example.shamanApi.model.User;
+import com.example.shamanApi.repository.RoleRepository;
 import com.example.shamanApi.repository.UserRepository;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
@@ -12,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,10 +27,12 @@ public class UserService implements IUserService{
     private final UserRepository userRepository;
     private final Mapper mapper;
     private final PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
         this.mapper = DozerBeanMapperSingletonWrapper.getInstance();
     }
 
@@ -38,7 +44,7 @@ public class UserService implements IUserService{
      * @throws UserAlreadyExistException    wyjątek w przypadku istnienia użytkownika o podanym loginie lub adresie email
      */
     @Override
-    public User registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
+    public UserDto registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException {
         if (emailExists(userDto.getEmail())) {
             throw new UserAlreadyExistException("There is an account with that email address: "
                     + userDto.getEmail());
@@ -50,7 +56,12 @@ public class UserService implements IUserService{
         User userToRegister = mapper.map(userDto,User.class);
         userToRegister.setLogin(userDto.getLogin());
         encodePassword(userToRegister, userDto);
-        return userRepository.save(userToRegister);
+        Role userRole = roleRepository.findByName("user");
+        List<Role> roles = new ArrayList<>();
+        roles.add(userRole);
+        userToRegister.setRoles(roles);
+        User addedUser = userRepository.save(userToRegister);
+        return mapper.map(addedUser, UserDto.class);
     }
 
     /**
