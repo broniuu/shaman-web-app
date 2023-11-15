@@ -23,6 +23,7 @@ import static com.example.shamanApi.security.Utilities.checkUser;
 /**
  * Klasa obsługuje endpointy związane z użytkownikiem
  */
+@CrossOrigin
 @RestController
 public class UserController {
     private final UserService userService;
@@ -30,11 +31,11 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
-    public UserController(UserRepository userRepository, PasswordEncoder passwordEncoder, TokenService tokenService, AuthenticationManager authenticationManager) {
+    public UserController(UserRepository userRepository, UserService userService, TokenService tokenService, AuthenticationManager authenticationManager) {
+        this.userService = userService;
         this.tokenService = tokenService;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
-        this.userService = new UserService(userRepository, passwordEncoder);
     }
 
     /**
@@ -45,8 +46,8 @@ public class UserController {
      * @throws RuntimeException
      */
     @PostMapping(value ="/user/registration")
-    public ResponseEntity<User>registerUserAccount(@RequestBody UserDto userDto) throws RuntimeException {
-        User registered = userService.registerNewUserAccount(userDto);
+    public ResponseEntity<UserDto>registerUserAccount(@RequestBody UserDto userDto) throws RuntimeException {
+        UserDto registered = userService.registerNewUserAccount(userDto);
 
         return new ResponseEntity<>(registered, HttpStatus.OK);
     }
@@ -58,7 +59,6 @@ public class UserController {
      * @return zalogowany użytkownik
      * @throws AuthenticationException
      */
-    @CrossOrigin
     @PostMapping(value ="/user/login")
     public Cookie token(@RequestBody LoginRequest userLogin) throws AuthenticationException {
         Authentication authentication = authenticationManager.authenticate(

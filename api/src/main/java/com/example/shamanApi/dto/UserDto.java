@@ -2,6 +2,9 @@ package com.example.shamanApi.dto;
 
 import com.sun.istack.NotNull;
 import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
+
 public class UserDto {
     @NotNull
     @NotEmpty
@@ -30,6 +33,8 @@ public class UserDto {
     @NotNull
     @NotEmpty
     private String email;
+
+    private List<RoleDto> roles;
 
     public String getLogin() {
         return login;
@@ -109,5 +114,13 @@ public class UserDto {
         if (obj == null || getClass() != obj.getClass()) return false;
         UserDto that = (UserDto) obj;
         return this.login.toLowerCase().equals(that.login.toLowerCase());
+    }
+
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
+        this.roles = roles;
     }
 }

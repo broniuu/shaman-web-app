@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {CreditCardValidators} from "angular-cc-library";
+import {AccountService} from "../../services/account/account.service";
+import {User} from "../../models/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -24,6 +27,8 @@ export class RegistrationComponent implements OnInit{
     email: ['', [Validators.email, Validators.required]]
   });
 
+  invalidValuesInAnyControl: boolean = false;
+  errorOccuredDuringAddingUser: boolean = false;
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) =>
       control?.value === control?.parent?.get(matchTo)?.value
@@ -31,12 +36,36 @@ export class RegistrationComponent implements OnInit{
   }
 
   submit(): void {
-    console.log(this.registerForm.controls['password'].errors);
-    console.log(this.registerForm.controls['confirmPassword'].errors);
-    console.log(this.registerForm.value);
+    this.invalidValuesInAnyControl = false;
+    Object.keys(this.registerForm.controls).forEach(key => {
+      const control = this.registerForm.get(key);
+      if (control?.errors) {
+        this.invalidValuesInAnyControl = true;
+        console.log(key, control.errors);
+        return;
+      }
+    });
+    if (this.invalidValuesInAnyControl) {
+      return;
+    }
+    let user: User = {
+      login: this.registerForm.controls['login'].value,
+      password: this.registerForm.controls['password'].value,
+      name: this.registerForm.controls['name'].value,
+      surname: this.registerForm.controls['surname'].value,
+      address: this.registerForm.controls['address'].value,
+      debitCardNumber: this.registerForm.controls['debitCardNumber'].value,
+      expireDate: this.registerForm.controls['expireDate'].value,
+      cvv: this.registerForm.controls['cvv'].value,
+      email: this.registerForm.controls['email'].value
+    };
+    this.accountService.register(user).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: () => this.errorOccuredDuringAddingUser = true
+    })
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) {
   }
 
   ngOnInit(): void {
