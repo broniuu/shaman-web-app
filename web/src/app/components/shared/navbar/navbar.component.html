@@ -1,0 +1,36 @@
+
+<mat-toolbar [ngStyle]="{'background':Colors.second}">
+
+  <button mat-button [matMenuTriggerFor]="belowMenu">  <mat-icon>menu</mat-icon></button>
+  <mat-menu #belowMenu="matMenu" yPosition="below">
+    <button (click)="GoToSettings()" mat-menu-item>Settings</button>
+    <button (click)="GotoRestaurants()" mat-menu-item>Restaurants</button>
+  </mat-menu>
+  <span (click)="GotoHome()">ReadWise</span>
+  <span class="example-spacer"></span>
+  <div *ngIf="searchBarVisibility" style="align-content: center">
+    <mat-form-field style="margin-top:25px;">
+      <mat-label>Search</mat-label>
+      <input matInput value="" [(ngModel)]="searchString">
+    </mat-form-field>
+    <button mat-button style="margin-bottom: 20px"(click)="sendString()">  <mat-icon>search</mat-icon></button>
+  </div>
+  <span class="example-spacer"></span>
+  <button *ngIf="!logged" mat-icon-button class="example-icon favorite-icon" (click)="Account()" aria-label="Example icon-button with heart icon">
+    <mat-icon>perm_identity</mat-icon>
+  </button>
+  <div *ngIf="logged">
+    <button mat-icon-button class="example-icon favorite-icon" (click)="LogOut()" aria-label="Example icon-button with heart icon">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!logged">
+    <button mat-icon-button class="example-icon favorite-icon" (click)="Login()" aria-label="Example icon-button with heart icon">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+  <button  *ngIf="logged" mat-icon-button class="example-icon favorite-icon" (click)="GotoFavorite()" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+
+</mat-toolbar>
