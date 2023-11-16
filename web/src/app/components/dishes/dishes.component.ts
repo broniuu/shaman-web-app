@@ -7,6 +7,7 @@ import {DishResponse} from "../../models/DishResponse";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Dish} from "../../models/Dish";
 import {SharedService} from "../../services/shared.service";
+import {NavbarComunicationService} from "../../services/navbar/navbar-comunication.service";
 
 @Component({
   selector: 'app-dishes',
@@ -18,14 +19,14 @@ export class DishesComponent implements OnInit,OnDestroy{
   public page:number;
   public url:string;
   public name:string;
-  constructor(private dishesService:DishesService,private route: ActivatedRoute,private sharedService: SharedService,private router: Router) { }
-  public searchedText: string;
+  constructor(private dishesService:DishesService,private route: ActivatedRoute,private sharedService: NavbarComunicationService,private router: Router) { }
+  @Input() searchedText: string="";
   public index:number=1;
   ngOnDestroy(): void {
   }
   ngOnInit(): void {
-    this.sharedService.currentData.subscribe(data => {
-      this.searchedText=data;
+    this.sharedService.getSearch().subscribe((value) => {
+      this.searchedText=value;
     });
     let name="";
     this.route.paramMap

@@ -1,5 +1,4 @@
 <div style="display: flex ; flex-direction: column;justify-content: center;align-content: center; margin:25px;justify-items: center" >
-  <app-search-bar (childEvent)="receiveData($event)" style="flex: 1;align-self: center"></app-search-bar>
   <section id="dishes">
     <app-dish-item style="margin-top: 20px" *ngFor="let dish of dishes | filterText: searchedText"  [dish]="dish"></app-dish-item>
   </section>
