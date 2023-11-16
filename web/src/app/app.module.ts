@@ -19,6 +19,22 @@ import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import {NgOptimizedImage} from "@angular/common";
 
+import { DishItemComponent } from './components/dishes/dish-item/dish-item.component';
+import { FilterTextPipe } from './pipes/filter-text.pipe';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatNativeDateModule, MatOptionModule} from "@angular/material/core"
+import {MatMenuModule} from "@angular/material/menu";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -30,19 +46,41 @@ import {NgOptimizedImage} from "@angular/common";
     DishComponent,
     RestaurantItemComponent,
     SearchBarComponent,
+    DishItemComponent,
+    FilterTextPipe,
+    NavbarComponent
+    SearchBarComponent,
     LoginComponent
   ],
-  imports: [
-
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    CreditCardDirectivesModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgOptimizedImage
-  ],
+    imports: [
+      MatInputModule,
+      MatMenuModule,
+      MatExpansionModule,
+      MatOptionModule,
+      MatSelectModule,
+      MatSnackBarModule,
+      MatToolbarModule,
+      MatButtonModule,
+      MatIconModule,
+      MatCardModule,
+      MatButtonModule,
+      MatButtonModule,
+      MatExpansionModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatDatepickerModule,
+      MatNativeDateModule,
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        CreditCardDirectivesModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgOptimizedImage,
+        BrowserAnimationsModule
+    ],
   providers: [StubTokenService],
   bootstrap: [AppComponent],
 })
