@@ -1,6 +1,6 @@
-import {Dish} from "./Dish";
-import {Pageable} from "./Pagable";
-import {Sort} from "./Sort";
+import {Dish} from "./dish";
+import {Pageable} from "./pagable";
+import {Sort} from "./sort";
 
 export interface  DishResponse {
   content: Dish[];

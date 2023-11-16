@@ -2,11 +2,10 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
 import {DishService} from "../../services/dish/dish.service";
 import {DishesService} from "../../services/dishes/dishes.service";
-import {Restaurant} from "../../models/Restaurant";
-import {DishResponse} from "../../models/DishResponse";
+import {Restaurant} from "../../models/restaurant";
+import {DishResponse} from "../../models/dishResponse";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Dish} from "../../models/Dish";
-import {SharedService} from "../../services/shared.service";
+import {Dish} from "../../models/dish";
 import {NavbarComunicationService} from "../../services/navbar/navbar-comunication.service";
 
 @Component({

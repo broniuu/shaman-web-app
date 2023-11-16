@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Restaurant} from "../../models/Restaurant";
+import {Restaurant} from "../../models/restaurant";
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Observable, Subscription} from "rxjs";

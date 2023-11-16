@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {Dish} from "../../models/Dish";
+import {Dish} from "../../models/dish";
 import { HttpClient } from '@angular/common/http';
-import {DishResponse} from '../../models/DishResponse';
+import {DishResponse} from '../../models/dishResponse';
 @Injectable({
   providedIn: 'root'
 })

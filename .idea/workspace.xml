@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="Matangular + nabar i obsługa">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dishes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dishes.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurant-item/restaurant-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurant-item/restaurant-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurants.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/models/Dish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/dish.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/models/DishResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/dishResponse.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/models/Pagable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/pagable.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/models/Restaurant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/restaurant.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/models/Sort.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/sort.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/pipes/filter-text.pipe.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/pipes/filterTextPipe/filter-text.pipe.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/pipes/filter-text.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/pipes/filterTextPipe/filter-text.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/dishes/dishes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/dishes/dishes.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/restaurant/restaurant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/restaurant/restaurant.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/shared.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/shared.service.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +110,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Kamil/IdeaProjects/shaman-web-app2/web/package.json",
+    "last_opened_file_path": "C:/Users/Kamil/IdeaProjects/shaman-web-app2",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -99,12 +118,13 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "configurable.group.build",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Users\\Kamil\\IdeaProjects\\shaman-web-app2\\web\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kamil\IdeaProjects\shaman-web-app2\web\src\app\pipes\filterTextPipe" />
       <recent name="C:\Users\Kamil\IdeaProjects\shaman-web-app2\web\src\app\services\navbar" />
     </key>
   </component>
@@ -139,7 +159,8 @@
       <workItem from="1700068161881" duration="66000" />
       <workItem from="1700150930768" duration="2979000" />
       <workItem from="1700153927394" duration="201000" />
-      <workItem from="1700154294533" duration="211000" />
+      <workItem from="1700154294533" duration="261000" />
+      <workItem from="1700154585741" duration="257000" />
     </task>
     <task id="LOCAL-00001" summary="restaurant dish podstawowa nawigacja i mapowanie">
       <option name="closed" value="true" />
@@ -189,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700154345810</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="poprawka">
+      <option name="closed" value="true" />
+      <created>1700154526291</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700154526291</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +231,7 @@
     <MESSAGE value="Dodanie wyszukiwania dania" />
     <MESSAGE value="Dodanie przycisku =- count" />
     <MESSAGE value="Matangular + nabar i obsługa" />
-    <option name="LAST_COMMIT_MESSAGE" value="Matangular + nabar i obsługa" />
+    <MESSAGE value="poprawka" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawka" />
   </component>
 </project>

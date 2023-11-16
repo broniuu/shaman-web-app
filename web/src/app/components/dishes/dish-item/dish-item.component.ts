@@ -1,5 +1,5 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {Dish} from "../../../models/Dish";
+import {Dish} from "../../../models/dish";
 import {ActivatedRoute, Router} from "@angular/router";
 import {auto} from "@popperjs/core";
 import {Colors} from "../../Colors";
