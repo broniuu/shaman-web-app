@@ -48,7 +48,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     SearchBarComponent,
     DishItemComponent,
     FilterTextPipe,
-    NavbarComponent
+    NavbarComponent,
     SearchBarComponent,
     LoginComponent
   ],
