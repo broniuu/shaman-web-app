@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Restaurant} from "../../models/Restaurant";
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {NavbarComunicationService} from "../../services/navbar/navbar-comunication.service";
 
 @Component({
   selector: 'app-restaurants',
@@ -12,11 +13,15 @@ import {Observable} from "rxjs";
 export class RestaurantsComponent implements OnInit,OnDestroy{
  public restaurants: Restaurant[];
  public response:any;
+  private subscription: Subscription;
+  @Input() filterText: string = '';
 
-  constructor(private restaurantService: RestaurantService) { }
+  constructor(private restaurantService: RestaurantService, private navbarCommunication:NavbarComunicationService) {}
 
   ngOnInit(): void {
-    console.log("check+1")
+    this.subscription = this.navbarCommunication.getSearch().subscribe((value) => {
+      this.filterText = value;
+    });
      this.getAllRestaurants();
   }
 
