@@ -82,7 +82,6 @@ public class UserController {
      * @param login     login do usuwanego konta
      * @return          usuwany użytkownik
      */
-    @CrossOrigin
     @DeleteMapping(value = "{login}/user/delete")
     public ResponseEntity<UserDto> deleteUserAccount(@PathVariable String login) {
         UserDto deleted = null;

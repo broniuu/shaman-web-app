@@ -97,8 +97,8 @@ public class SecurityConfigurer {
         return http
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
-                        .mvcMatchers( "/restaurants/**", "/discounts/**", "/activity").permitAll()
-                        .mvcMatchers("/user/**", "**/logout", "**/usercart/**", "/islogged").authenticated()
+                        .mvcMatchers("/user/**", "/restaurants/**", "/discounts/**", "/activity").permitAll()
+                        .mvcMatchers( "**/logout", "**/usercart/**", "/islogged").authenticated()
                         .anyRequest().authenticated()
                 ).logout(logout -> logout
                         .logoutUrl("/logout")
