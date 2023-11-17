@@ -14,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 import static com.example.shamanApi.security.Utilities.checkUser;
@@ -23,7 +25,6 @@ import static com.example.shamanApi.security.Utilities.checkUser;
 /**
  * Klasa obsługuje endpointy związane z użytkownikiem
  */
-@CrossOrigin
 @RestController
 public class UserController {
     private final UserService userService;
@@ -127,4 +128,5 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
 }
