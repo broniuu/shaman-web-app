@@ -1,8 +1,7 @@
-<div class="card" style="width: 18rem;">
-
+<div class="card" style="width: 18rem;" [ngStyle]="{'width.px':screenWidth }">
   <div class="image-container">
-    <img src="{{restaurant.backgroundImageUrl}}" alt="Background" class="background-image">
-    <img src="{{restaurant.imageUrl}}" alt="Center" class="center-image">
+    <img *ngIf="restaurant.backgroundImageUrl.length > 0" [src]=restaurant.backgroundImageUrl [ngStyle]="{'width.px':screenWidth }"  alt="Background" class="background-image">
+    <img *ngIf="restaurant.imageUrl.length > 0" [src]=restaurant.imageUrl  [ngStyle]="{'width.px':screenWidth -(screenWidth/2),'max-height.px':200 }" alt="Center" class="center-image">
   </div>
   <div class="card-body">
     <h5 class="card-title">{{ restaurant.name }}</h5>
@@ -12,10 +11,8 @@
     <li class="list-group-item">{{ restaurant.street}},{{ restaurant.houseNumber }}</li>
     <li class="list-group-item">ocena: {{ restaurant.score }}/5</li>
     <li class="list-group-item"> {{restaurant.location}}</li>
-
   </ul>
-  <div class="card-body">
-    <a href="/Restaurant/{{restaurant.name}}" class="card-link">Sprawdź</a>
-    <a href="#" class="card-link">Zobacz na mapie</a>
+  <div class="card-body" style="flex: 1;display: flex">
+    <button class="button" (click)="GoToDishes(restaurant.name)" [ngStyle]="{'border-color':Colors.main,'background':Colors.second}" ><h5 style="color:{{Colors.main}}">Sprawdź</h5></button>
   </div>
 </div>

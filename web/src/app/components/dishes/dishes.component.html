@@ -1,1 +1,22 @@
-<p>dishes works!</p>
+<div style="display: flex ; flex-direction: column;justify-content: center;align-content: center; margin:25px;justify-items: center" >
+  <section id="dishes">
+    <app-dish-item style="margin-top: 20px" *ngFor="let dish of dishes | filterText: searchedText"  [dish]="dish"></app-dish-item>
+  </section>
+<!--  <nav style="align-self: center" aria-label="...">-->
+<!--    <ul class="pagination">-->
+<!--      <li class="page-item disabled">-->
+<!--        <a class="page-link" (click)="PrevPage()" tabindex="-1">Previous</a>-->
+<!--      </li>-->
+<!--      <li class="page-item"><a class="page-link"  href="{{url}}">1</a></li>-->
+<!--      <li class="page-item active">-->
+
+<!--        <a class="page-link" href="{{url}}">2 <span class="sr-only">(current)</span></a>-->
+<!--      </li>-->
+<!--      <li class="page-item"><a class="page-link" href="{{url}}">3</a></li>-->
+<!--      <li class="page-item">-->
+<!--        <button class="page-link" (click)="NextPage()" >Next</button>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--  </nav>-->
+
+</div>

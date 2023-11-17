@@ -1,0 +1,162 @@
+
+
+.background-image {
+
+  object-fit: cover;
+}
+
+.center-image {
+  background: white;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* Assuming COLORS.second, etc., are defined as CSS variables or actual color values */
+:root {
+  --main: white;
+  --second: #c2342f;
+  --third: #cb4a44;
+  --fourth: #7c4141;
+
+  --mainOrange: #FFB400;
+  --secondOrange: #E2BE6E;
+ --thirdOrange: #F6B638;
+  --fourthOrange: #ffd876;
+  --lightOrangeButton: #DBAB64;
+}
+
+.containerItem {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.dish-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: white;
+  margin: 0;
+}
+
+.text-search-bar {
+  color: var(--second);
+  font-family: 'Ubuntu-Light', serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.text-title {
+  font-size: 16px;
+  color: var(--second);
+  margin-bottom: 10px;
+}
+
+.text-desc {
+  font-size: 12px;
+  color: black;
+}
+
+.text-price {
+  font-size: 16px;
+  color: var(--second);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.column {
+  width: 190px;
+  margin-right: 10px;
+}
+
+.column-price {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.row {
+  flex: 1;
+  flex-direction: row;
+  margin-top: 10px;
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom-width: 1px;
+  border-color: var(--second);
+}
+
+.plus-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  width: 35px;
+  border-radius: 5px;
+  background-color: var(--second);
+  margin-top: 20px;
+}
+
+.search-bar {
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  background-color: white;
+  border-color: #c2342f;
+  border-width: 1px;
+  border-radius: 5px;
+  width: 380px;
+  height: 50px;
+  margin-left: 15px;
+}
+
+.icon {
+  font-size: 18px;
+  margin-left: 10px;
+  margin-right: 5px;
+  color: var(--second);
+}
+
+.icon-plus {
+  font-size: 26px;
+  padding: 5px;
+  color: white;
+}
+
+.image-container {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: var(--mainOrange);
+  background-color: var(--secondOrange);
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 5px;
+  border-color: var(--second);
+  border-width: 1px;
+  margin: 20px;
+}
