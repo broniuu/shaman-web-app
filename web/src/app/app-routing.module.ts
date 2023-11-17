@@ -4,6 +4,7 @@ import {RestaurantsComponent} from "./components/restaurants/restaurants.compone
 import {AppComponent} from "./app.component";
 import {RegistrationComponent} from "./components/registration/registration.component";
 import {LoginComponent} from "./components/login/login.component";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 const routes: Routes = [{ path: '', component: AppComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [{ path: '', component: AppComponent },
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent
   }
 ];
 

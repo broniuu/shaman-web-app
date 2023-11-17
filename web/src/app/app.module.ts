@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -18,6 +18,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import {NgOptimizedImage} from "@angular/common";
+import { SettingsComponent } from './components/settings/settings.component';
+import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
+import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 
 // @ts-ignore
 @NgModule({
@@ -30,7 +33,9 @@ import {NgOptimizedImage} from "@angular/common";
     DishComponent,
     RestaurantItemComponent,
     SearchBarComponent,
-    LoginComponent
+    LoginComponent,
+    SettingsComponent,
+    ToastsContainerComponent
   ],
   imports: [
 
@@ -43,7 +48,10 @@ import {NgOptimizedImage} from "@angular/common";
     FormsModule,
     NgOptimizedImage
   ],
-  providers: [StubTokenService],
+  providers: [
+    StubTokenService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

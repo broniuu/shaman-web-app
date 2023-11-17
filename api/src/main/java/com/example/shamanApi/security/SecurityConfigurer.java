@@ -36,7 +36,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfigurer implements WebMvcConfigurer {
+public class SecurityConfigurer {
 
 
     @Autowired
@@ -97,8 +97,8 @@ public class SecurityConfigurer implements WebMvcConfigurer {
         return http
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
-                        .mvcMatchers("/user/**", "/restaurants/**", "/discounts/**", "/activity").permitAll()
-                        .mvcMatchers("**/logout", "**/usercart/**", "/islogged").authenticated()
+                        .mvcMatchers( "/restaurants/**", "/discounts/**", "/activity").permitAll()
+                        .mvcMatchers("/user/**", "**/logout", "**/usercart/**", "/islogged").authenticated()
                         .anyRequest().authenticated()
                 ).logout(logout -> logout
                         .logoutUrl("/logout")
@@ -137,13 +137,5 @@ public class SecurityConfigurer implements WebMvcConfigurer {
     JwtDecoder jwtDecoder() throws JOSEException {
         return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
     }
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
-                .allowCredentials(true);
-    }
-
 }
 

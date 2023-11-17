@@ -1,6 +1,7 @@
 package com.example.shamanApi.ReceiptPrinter;
 
 import com.example.shamanApi.dto.CartItemDto;
+import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.model.User;
 import com.google.zxing.WriterException;
 import com.itextpdf.io.image.ImageData;
@@ -47,7 +48,7 @@ public class PdfPrinter {
      * @throws WriterException
      */
     public static ByteArrayOutputStream makePdf(
-            User currentUser,
+            UserDto currentUser,
             List<CartItemDto> cartItems,
             boolean delivery,
             String note,
