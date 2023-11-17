@@ -25,6 +25,7 @@ import static com.example.shamanApi.security.Utilities.checkUser;
 /**
  * Klasa obsługuje endpointy związane z użytkownikiem
  */
+@CrossOrigin
 @RestController
 public class UserController {
     private final UserService userService;
