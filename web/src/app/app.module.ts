@@ -8,13 +8,12 @@ import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {CreditCardDirectivesModule} from "angular-cc-library";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { DishesComponent } from './components/dishes/dishes.component';
 import { DishComponent } from './components/dish/dish.component';
 import { RestaurantItemComponent } from './components/restaurants/restaurant-item/restaurant-item.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import {NgOptimizedImage} from "@angular/common";
@@ -51,26 +50,14 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     DishItemComponent,
     FilterTextPipe,
     NavbarComponent,
-    LoginComponent
-    SearchBarComponent,
+    LoginComponent,
     LoginComponent,
     SettingsComponent,
     ToastsContainerComponent
   ],
-  imports: [
-
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    CreditCardDirectivesModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgOptimizedImage
-  ],
   providers: [
     StubTokenService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
     imports: [
       MatInputModule,
@@ -101,7 +88,6 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         NgOptimizedImage,
         BrowserAnimationsModule
     ],
-  providers: [StubTokenService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
