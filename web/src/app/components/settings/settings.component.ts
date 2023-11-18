@@ -22,12 +22,14 @@ export class SettingsComponent {
       return;
     }
     this.accountService.deleteLoggedUser().subscribe({
+
       next: () => {
         this.router.navigate(['/']).then(() =>
           this.toastService.showSuccess('Konto zostało usunięte')
         );
       },
       error: (response: HttpErrorResponse) => {
+        console.log(response.message)
         let error: ApiError = response.error
         this.toastService.showDanger(error.message);
       }

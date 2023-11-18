@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {map, Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../../models/user";
 import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
@@ -38,7 +38,10 @@ export class AccountService {
   deleteLoggedUser(): Observable<User> {
     let login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/delete`;
-    return this.http.delete<User>(url);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    console.log(this.getToken())
+
+    return this.http.delete<User>(url,{headers});
   }
 
   getUser(login: string): Observable<User> {
