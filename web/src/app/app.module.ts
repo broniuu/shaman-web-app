@@ -37,6 +37,7 @@ import {MatNativeDateModule, MatOptionModule} from "@angular/material/core"
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { UserFormComponent } from './components/user-form/user-form.component';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -53,11 +54,12 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     LoginComponent,
     LoginComponent,
     SettingsComponent,
-    ToastsContainerComponent
+    ToastsContainerComponent,
+    UserFormComponent
   ],
   providers: [
     StubTokenService,
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
     imports: [
       MatInputModule,

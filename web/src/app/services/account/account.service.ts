@@ -39,12 +39,11 @@ export class AccountService {
     let login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/delete`;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    console.log(this.getToken())
-
     return this.http.delete<User>(url,{headers});
   }
 
-  getUser(login: string): Observable<User> {
+  getLoggedUser(): Observable<User> {
+    const login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user`;
     return this.http.get<User>(url);
   }
