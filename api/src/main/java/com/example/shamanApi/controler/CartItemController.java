@@ -52,9 +52,10 @@ public class CartItemController {
     @GetMapping(value = "{login}/usercart", params = {"p"})
     public ResponseEntity<Iterable<CartItemDto>> getCartItemsByUser(
             @PathVariable String login,
-            @RequestParam("p") int pageNumber) {
+            @RequestParam("pageSize") int pageNumber,
+            @RequestParam("pageNumber") int pageSize) {
         if (checkUser(login)) {
-            Page<CartItemDto> resultPage = cartItemService.findPaginatedCartItemsByOwnersLogin(login, pageNumber);
+            Page<CartItemDto> resultPage = cartItemService.findPaginatedCartItemsByOwnersLogin(login, pageNumber, pageSize);
             return new ResponseEntity<>(resultPage, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

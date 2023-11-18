@@ -4,12 +4,13 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../../models/user";
 import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
+import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8082';
+  private apiUrl = environment.apiUrl;
 
   readonly localStorageTokenKey = 'token';
   readonly localStorageLoginKey = 'login'

@@ -37,6 +37,7 @@ import {MatNativeDateModule, MatOptionModule} from "@angular/material/core"
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     LoginComponent,
     LoginComponent,
     SettingsComponent,
-    ToastsContainerComponent
+    ToastsContainerComponent,
+    ShoppingCartComponent
   ],
   providers: [
     StubTokenService,
