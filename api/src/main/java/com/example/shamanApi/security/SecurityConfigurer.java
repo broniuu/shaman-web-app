@@ -94,7 +94,7 @@ public class SecurityConfigurer {
      */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        return http.cors().and()
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .mvcMatchers("/user/**", "/restaurants/**", "/discounts/**", "/activity").permitAll()
