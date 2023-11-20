@@ -11,7 +11,7 @@
           <a style="padding: 10px;font-weight: bold">{{this.count}}</a>
           <button (click)="Increase()" [ngStyle]="{'color':Colors.main,'background':Colors.second}"   style="font-weight: bold; width: 40px ;padding: 10px;border-top-right-radius: 20px;border-bottom-right-radius:20px; ">+</button>
         </div>
-        <button  [disabled]="this.blocekd?true:null" [ngStyle]="{ 'color':Colors.main,'background':Colors.second}" (click)="addItemToCasket(dish.dishId)" style="flex: 2; border-radius: 20px" ><H4 >Dodaj do koszyka</H4></button>
+        <button [disabled]="this.blocekd?true:null" [ngStyle]="{ 'color':Colors.main,'background':Colors.second}" (click)="addToCart(dish.dishId)" style="flex: 2; border-radius: 20px" ><H4 >Dodaj do koszyka</H4></button>
       </div>
     </div>
   </div>

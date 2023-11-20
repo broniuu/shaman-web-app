@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {CreditCardDirectivesModule} from "angular-cc-library";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { DishesComponent } from './components/dishes/dishes.component';
@@ -34,6 +34,11 @@ import {MatNativeDateModule, MatOptionModule} from "@angular/material/core"
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { SettingsComponent } from './components/settings/settings.component';
+import {ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -87,7 +92,6 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
         NgOptimizedImage,
         BrowserAnimationsModule
     ],
-  providers: [StubTokenService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

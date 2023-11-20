@@ -137,10 +137,7 @@ public class CartItemService implements ICartItemService {
     public Page<CartItemDto> findPaginatedCartItemsByOwnersLogin(String login, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         UUID userId = userRepository.findUserIdByLogin(login);
-        int cartItemsCount = cartItemRepository.countByCartOwnerId(userId);
         Page<CartItem> cartItems = cartItemRepository.findAllByCartOwnerId(userId, pageable);
-        if (cartItems.isEmpty() || cartItems.getTotalElements() > cartItemsCount)
-            throw new ResourceNotFoundException("Nie znaleziono produktów z koszyka, dla użytkownika " + login + "ona tej stronie");
         return cartItems.map(x -> mapper.map(x, CartItemDto.class));
     }
 

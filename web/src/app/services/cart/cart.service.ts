@@ -14,12 +14,20 @@ export class CartService {
 
   getCart() {
     const login = this.storageService.getLogin();
-    const url = `${this.apiUrl}/${login}/usercart?pageSize=1000&pageNumber=0`;
+    const url = `${this.apiUrl}/${login}/usercart`;
     return this.http.get<CartItemResponse>(url);
   }
 
-  addToCart() {
+  saveToCart(dishId: string, count: number) {
+    const login = this.storageService.getLogin();
+    const url = `${this.apiUrl}/${login}/usercart/${dishId}/save/${count}`;
+    return this.http.post<CartItem>(url,{});
+  }
 
+  remove(cartItemId: string) {
+    const login = this.storageService.getLogin();
+    const url = `${this.apiUrl}/${login}/usercart/${cartItemId}/delete`;
+    return this.http.delete<CartItem>(url);
   }
 
 }

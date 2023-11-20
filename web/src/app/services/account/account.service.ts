@@ -39,8 +39,7 @@ export class AccountService {
   deleteLoggedUser(): Observable<User> {
     let login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/delete`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.delete<User>(url,{headers});
+    return this.http.delete<User>(url);
   }
 
   getLoggedUser(): Observable<User> {
