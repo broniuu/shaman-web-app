@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawki 2">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +98,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "feature/settings",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Kamil/IdeaProjects/shaman-web-app2",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -103,7 +108,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "configurable.group.build",
-    "ts.external.directory.path": "C:\\Users\\Kamil\\IdeaProjects\\shaman-web-app2\\web\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\Kamil\\IdeaProjects\\shaman-web-app\\web\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -147,6 +152,7 @@
       <workItem from="1700154294533" duration="261000" />
       <workItem from="1700154585741" duration="367000" />
       <workItem from="1700304013328" duration="3974000" />
+      <workItem from="1700498303186" duration="2514000" />
     </task>
     <task id="LOCAL-00001" summary="restaurant dish podstawowa nawigacja i mapowanie">
       <option name="closed" value="true" />
@@ -235,13 +241,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts</url>
           <line>20</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts</url>
           <line>15</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

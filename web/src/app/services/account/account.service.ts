@@ -5,6 +5,7 @@ import {User} from "../../models/user";
 import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
 import {environment} from "../../../environments/environment.development";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,14 @@ export class AccountService {
 
   readonly localStorageTokenKey = 'token';
   readonly localStorageLoginKey = 'login'
-
+  isLoggedIn() {
+    const jwtHelper = new JwtHelperService();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    return !(jwtHelper.isTokenExpired(token));
+  }
   constructor(private http: HttpClient) { }
 
   register(userToRegister: User): Observable<User>  {
