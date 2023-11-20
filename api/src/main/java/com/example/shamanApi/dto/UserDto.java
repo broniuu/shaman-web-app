@@ -4,8 +4,11 @@ import com.sun.istack.NotNull;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
+import java.util.UUID;
 
 public class UserDto {
+    private UUID userId;
+
     @NotNull
     @NotEmpty
     private String login;
@@ -122,5 +125,13 @@ public class UserDto {
 
     public void setRoles(List<RoleDto> roles) {
         this.roles = roles;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }

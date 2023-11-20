@@ -25,15 +25,18 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 
 /**
  * klasa konfigurująca bezpieczenstwo i dostęp do poszczegolnych end-pointów.
- * */
+ */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfigurer  {
+public class SecurityConfigurer {
 
 
     @Autowired
@@ -43,18 +46,22 @@ public class SecurityConfigurer  {
     public UserDetailsService userDetailsService() {
         return new MyUserDetailsService();
     }
+
     /**
      * funkcja tworząca Password Encoder.
+     *
      * @return password Encoder
-     * */
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
     /**
      * funkcja tworząca nowy autentykator, ustawiająca parametry dla UserSerwice, oraz PasswordEncoder
+     *
      * @return DaoAuthenticationProvide z ustawionymi właściwie parametrami.
-     * */
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -66,11 +73,12 @@ public class SecurityConfigurer  {
     }
 
     private RSAKey rsaKey;
+
     /**
      * funkcja tworząca nowy autentykator, ustawiająca parametry dla UserSerwice.
      *
      * @return DaoAuthenticationProvide z ustawionymi właściwie parametrami.
-     * */
+     */
     @Bean
     public AuthenticationManager authManager(UserDetailsService userDetailsService) {
         var authProvider = new DaoAuthenticationProvider();
@@ -81,17 +89,27 @@ public class SecurityConfigurer  {
     /**
      * funkcja określająca które strony wymagają autoryzacij a które są dostępne dla wszystkich
      *
-     * @param       http - HttpSecurity używane przez API.
-     * @return      http - HttpSecurity z zbudowanym poprawnie FilterChain.
-     * */
+     * @param http - HttpSecurity używane przez API.
+     * @return http - HttpSecurity z zbudowanym poprawnie FilterChain.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
+        return http.cors().and()
                 .csrf().disable()
-                .authorizeRequests( auth -> auth
-                        .mvcMatchers("/user/**", "/restaurants/**","/discounts/**","/activity").permitAll()
-                        .mvcMatchers("**/logout", "**/usercart/**", "/islogged").authenticated()
+                .authorizeRequests(auth -> auth
+                        .mvcMatchers("/user/**", "/restaurants/**", "/discounts/**", "/activity").permitAll()
+                        .mvcMatchers( "**/logout", "**/usercart/**", "/islogged").authenticated()
                         .anyRequest().authenticated()
+                ).logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .addLogoutHandler((request, response, authentication) -> {
+                            for (Cookie cookie : request.getCookies()) {
+                                String cookieName = cookie.getName();
+                                Cookie cookieToDelete = new Cookie(cookieName, null);
+                                cookieToDelete.setMaxAge(0);
+                                response.addCookie(cookieToDelete);
+                            }
+                        })
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
@@ -102,13 +120,14 @@ public class SecurityConfigurer  {
      * funckja wykorzystuje kucz RSA (wygenerowany w klasie {@link Jwks Jwks}), do stworzenia JWKSource
      *
      * @return JWKSource z nowo wygenerowanym kluczem RSA
-     * */
+     */
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         rsaKey = Jwks.generateRsa();
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }
+
     @Bean
     JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwks) {
         return new NimbusJwtEncoder(jwks);
@@ -118,9 +137,5 @@ public class SecurityConfigurer  {
     JwtDecoder jwtDecoder() throws JOSEException {
         return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey()).build();
     }
-
-
-
-
 }
 

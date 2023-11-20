@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Klasa obsługuje endpointy związane z restauracjami
  */
+@CrossOrigin
 @RestController
 public class RestaurantsController {
 

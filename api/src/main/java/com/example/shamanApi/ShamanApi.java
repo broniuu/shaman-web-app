@@ -5,7 +5,11 @@ import com.example.shamanApi.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
 public class ShamanApi implements CommandLineRunner {
@@ -40,4 +44,5 @@ public class ShamanApi implements CommandLineRunner {
 		Seed seed = new Seed(roleRepository, passwordEncoder, userRepository,restaurantRepository,cartItemRepository,dishRepository,discountRepository);
 		seed.seedData();
 	}
+
 }
