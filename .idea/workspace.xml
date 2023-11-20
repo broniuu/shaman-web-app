@@ -6,27 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawka">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dishes.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dishes.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurant-item/restaurant-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurant-item/restaurant-item.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurants.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/restaurants/restaurants.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/search-bar/search-bar.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/models/Dish.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/dish.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/models/DishResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/dishResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/models/Pagable.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/pagable.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/models/Restaurant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/restaurant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/models/Sort.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/models/sort.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/pipes/filter-text.pipe.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/pipes/filterTextPipe/filter-text.pipe.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/pipes/filter-text.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/pipes/filterTextPipe/filter-text.pipe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/services/dishes/dishes.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/dishes/dishes.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/services/restaurant/restaurant.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/restaurant/restaurant.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/services/shared.service.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/services/shared.service.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="feature/Guard" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,7 +47,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1700153107" />
+                    <option name="lastUsedInstant" value="1700495228" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/Guard" />
+                    <option name="lastUsedInstant" value="1700494890" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/Restaurants-dish" />
@@ -161,6 +146,7 @@
       <workItem from="1700153927394" duration="201000" />
       <workItem from="1700154294533" duration="261000" />
       <workItem from="1700154585741" duration="257000" />
+      <workItem from="1700495124113" duration="526000" />
     </task>
     <task id="LOCAL-00001" summary="restaurant dish podstawowa nawigacja i mapowanie">
       <option name="closed" value="true" />

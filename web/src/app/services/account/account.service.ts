@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../../models/user";
 import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,14 @@ export class AccountService {
     const url = `${this.apiUrl}/registration`;
     return this.http.post<User>(url, userToRegister);
   }
-
+  isLoggedIn() {
+    const jwtHelper = new JwtHelperService();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    return !(jwtHelper.isTokenExpired(token));
+  }
   login(credentials: Credentials): Observable<boolean> {
     const url = `${this.apiUrl}/login`;
     return this.http.post<User>(url, credentials).pipe(

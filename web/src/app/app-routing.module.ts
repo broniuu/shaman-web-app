@@ -6,6 +6,7 @@ import {RegistrationComponent} from "./components/registration/registration.comp
 import {DishComponent} from "./components/dish/dish.component";
 import {DishesComponent} from "./components/dishes/dishes.component";
 import {LoginComponent} from "./components/login/login.component";
+import {GuardService} from "./services/guard/guard.service";
 
 const routes: Routes = [{ path: '', component: AppComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
@@ -14,6 +15,10 @@ const routes: Routes = [{ path: '', component: AppComponent },
   {
     path: 'register',
     component: RegistrationComponent
+  },
+  {
+    path: 'settings',
+    component: RegistrationComponent, canActivate: [GuardService]
   },
   {
     path: 'login',
