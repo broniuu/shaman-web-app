@@ -7,6 +7,7 @@ import {DishComponent} from "./components/dish/dish.component";
 import {DishesComponent} from "./components/dishes/dishes.component";
 import {LoginComponent} from "./components/login/login.component";
 import {GuardService} from "./services/guard/guard.service";
+import {SettingsComponent} from "./components/settings/settings.component";
 
 const routes: Routes = [{ path: '', component: AppComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
@@ -18,12 +19,13 @@ const routes: Routes = [{ path: '', component: AppComponent },
   },
   {
     path: 'settings',
-    component: RegistrationComponent, canActivate: [GuardService]
+    component: SettingsComponent, canActivate: [GuardService]
   },
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+
 ];
 
 @NgModule({

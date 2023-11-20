@@ -1,0 +1,28 @@
+<div class="container w-50 mt-5">
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          Edytuj profil
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <user-form
+            (submitEvent)="editAccount($event)"
+            [submitButtonText]="'Edytuj'" [user]="user"
+            [errorOccurred]="errorOccurredWhenEditing"
+            [errorMessage]="errorMessage"
+          ></user-form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-3 d-flex align-items-center justify-content-between w-100 p-2 border border-danger rounded">
+    <div class="mb-0">
+      <div><strong>Usuń profil</strong></div>
+      Ta opcja permamentnie usnunie twój profil, nie będziesz mógł go odzyskać.
+    </div>
+    <button class="btn btn-danger m-1" (click)="deleteAccount()">Usuń profil</button>
+  </div>
+</div>

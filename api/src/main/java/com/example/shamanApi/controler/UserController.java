@@ -14,8 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
 
 import static com.example.shamanApi.security.Utilities.checkUser;
@@ -81,8 +83,8 @@ public class UserController {
      * @return          usuwany użytkownik
      */
     @DeleteMapping(value = "{login}/user/delete")
-    public ResponseEntity<User> deleteUserAccount(@PathVariable String login) {
-        User deleted = null;
+    public ResponseEntity<UserDto> deleteUserAccount(@PathVariable String login) {
+        UserDto deleted = null;
         if(checkUser(login)){
             deleted = userService.deleteUserAccount(login);
             return new ResponseEntity<>(deleted, HttpStatus.OK);
@@ -100,9 +102,9 @@ public class UserController {
      * @return          zaktualizowany użytkownik
      */
     @PostMapping(value = "{login}/user/update")
-    public ResponseEntity<User> updateUserAccount(@PathVariable String login, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUserAccount(@PathVariable String login, @RequestBody UserDto userDto) {
         if(checkUser(login)){
-            User updated = userService.updateUserAccount(login, userDto);
+            UserDto updated = userService.updateUserAccount(login, userDto);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -117,8 +119,8 @@ public class UserController {
      * @return          wyświetlany użytkownik
      */
     @GetMapping(value = "{login}/user")
-    public ResponseEntity<User> showUserAccount(@PathVariable String login) {
-        User shown = null;
+    public ResponseEntity<UserDto> showUserAccount(@PathVariable String login) {
+        UserDto shown = null;
         if(checkUser(login)){
              shown = userService.showUserAccount(login);
             return new ResponseEntity<>(shown, HttpStatus.OK);
@@ -127,4 +129,5 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
 }

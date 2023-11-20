@@ -67,29 +67,29 @@ public class UserService implements IUserService{
     /**
      * Usuwanie konta użytkownika
      *
-     * @param login     login do usuwanego konta
-     * @return          usuwany użytkownik
+     * @param login login do usuwanego konta
+     * @return usuwany użytkownik
      */
     @Override
-    public User deleteUserAccount(String login) {
+    public UserDto deleteUserAccount(String login) {
         User userToDelete = userRepository.findByLogin(login);
         if (userToDelete == null) {
             throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
         userRepository.delete(userToDelete);
-        return userToDelete;
+        return mapper.map(userToDelete, UserDto.class);
     }
 
     /**
      * Aktualizowanie danych użytkownika
      *
-     * @param login         login do aktualizowanego konta
-     * @param userDto       dane do aktualizacji
-     * @return              zaktualizowany użytkownik
+     * @param login   login do aktualizowanego konta
+     * @param userDto dane do aktualizacji
+     * @return zaktualizowany użytkownik
      */
     @Override
-    public User updateUserAccount(String login, UserDto userDto) {
+    public UserDto updateUserAccount(String login, UserDto userDto) {
         User userToUpdate = userRepository.findByLogin(login);
         if (userToUpdate == null) {
             throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
@@ -97,7 +97,7 @@ public class UserService implements IUserService{
         }
         changeUserDtoToUser(userDto, userToUpdate);
         userRepository.save(userToUpdate);
-        return userToUpdate;
+        return mapper.map(userToUpdate, UserDto.class);
     }
 
     /**
@@ -121,16 +121,17 @@ public class UserService implements IUserService{
     /**
      * Wyświetlenie danych użytkownika
      *
-     * @param login     login do wyświetlanego konta
-     * @return          wyświetlany użytkownik
+     * @param login login do wyświetlanego konta
+     * @return wyświetlany użytkownik
      */
     @Override
-    public User showUserAccount(String login) {
+    public UserDto showUserAccount(String login) {
         if (userRepository.findByLogin(login) == null) {
             throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
-        return userRepository.findByLogin(login);
+        User user = userRepository.findByLogin(login);
+        return mapper.map(user, UserDto.class);
     }
 
     @Override
