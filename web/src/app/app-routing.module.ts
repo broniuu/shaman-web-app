@@ -7,6 +7,7 @@ import {DishComponent} from "./components/dish/dish.component";
 import {DishesComponent} from "./components/dishes/dishes.component";
 import {LoginComponent} from "./components/login/login.component";
 import {SettingsComponent} from "./components/settings/settings.component";
+import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {GuardService} from "./services/guard/guard.service";
 
 const routes: Routes = [{ path: '', component: AppComponent },
@@ -23,7 +24,12 @@ const routes: Routes = [{ path: '', component: AppComponent },
   },
   {
     path: 'settings',
-    component: SettingsComponent,canActivate:[GuardService]
+    component: SettingsComponent,
+    canActivate:[GuardService]
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
   }
 ];
 

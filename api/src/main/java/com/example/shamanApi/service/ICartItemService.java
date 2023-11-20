@@ -14,7 +14,7 @@ public interface ICartItemService {
     CartItemDto upsertCartItem(String ownerLogin, UUID dishId, int countOfDish);
     CartItemDto deleteCartItem(String ownerLogin, UUID cartItemId);
     CartItemDto findUserCartItemById(String ownerLogin, UUID cartItemId);
-    Page<CartItemDto> findPaginatedCartItemsByOwnersLogin(String login, int pageNumber);
+    Page<CartItemDto> findPaginatedCartItemsByOwnersLogin(String login, int pageNumber, int pageSize);
 
     void addSingleItem(String login, UUID dishId);
 

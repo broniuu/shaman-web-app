@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import {map, Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {User} from "../../models/user";
 import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
+import {environment} from "../../../environments/environment.development";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8082';
+  private apiUrl = environment.apiUrl;
 
   readonly localStorageTokenKey = 'token';
   readonly localStorageLoginKey = 'login'
@@ -46,8 +47,7 @@ export class AccountService {
   deleteLoggedUser(): Observable<User> {
     let login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/delete`;
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.delete<User>(url,{headers});
+    return this.http.delete<User>(url);
   }
 
   getLoggedUser(): Observable<User> {

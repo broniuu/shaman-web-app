@@ -15,17 +15,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);;
-        registry.addMapping("/restaurants/*/dishes").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);;
-        registry.addMapping("*/user").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);;
+        registry.addMapping("/**").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);
+        registry.addMapping("/restaurants/*/dishes").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);
+        registry.addMapping("*/user").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH").allowCredentials(true);
         registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
         registry.addMapping("/login").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
         registry.addMapping("/login").allowedOrigins("http://localhost:4200/login").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200") // or your frontend origin
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowCredentials(true); // Allow credentials
-
+        registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
+        registry.addMapping("*/usercart").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
     }
 
     public class SimpleCORSFilter implements Filter {

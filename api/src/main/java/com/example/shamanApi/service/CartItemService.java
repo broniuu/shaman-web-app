@@ -134,14 +134,10 @@ public class CartItemService implements ICartItemService {
      * @return              dania z Koszyka na danej stronie
      */
     @Override
-    public Page<CartItemDto> findPaginatedCartItemsByOwnersLogin(String login, int pageNumber) {
-        final int pageSize = 10;
+    public Page<CartItemDto> findPaginatedCartItemsByOwnersLogin(String login, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         UUID userId = userRepository.findUserIdByLogin(login);
-        int cartItemsCount = cartItemRepository.countByCartOwnerId(userId);
         Page<CartItem> cartItems = cartItemRepository.findAllByCartOwnerId(userId, pageable);
-        if (cartItems.isEmpty() || cartItems.getTotalElements() > cartItemsCount)
-            throw new ResourceNotFoundException("Not found CartItems of user " + login + "on this page");
         return cartItems.map(x -> mapper.map(x, CartItemDto.class));
     }
 
