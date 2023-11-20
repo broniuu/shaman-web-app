@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {StubTokenService} from "./services/stub-token.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {CreditCardDirectivesModule} from "angular-cc-library";
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { DishesComponent } from './components/dishes/dishes.component';
@@ -17,9 +17,6 @@ import { RestaurantItemComponent } from './components/restaurants/restaurant-ite
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
 import {NgOptimizedImage} from "@angular/common";
-import { SettingsComponent } from './components/settings/settings.component';
-import { ToastsContainerComponent } from './components/toasts-container/toasts-container.component';
-import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
 
 import { DishItemComponent } from './components/dishes/dish-item/dish-item.component';
 import { FilterTextPipe } from './pipes/filterTextPipe/filter-text.pipe';
@@ -37,7 +34,6 @@ import {MatNativeDateModule, MatOptionModule} from "@angular/material/core"
 import {MatMenuModule} from "@angular/material/menu";
 import {MatSelectModule} from "@angular/material/select";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -55,11 +51,12 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     LoginComponent,
     SettingsComponent,
     ToastsContainerComponent,
+    UserFormComponent,
     ShoppingCartComponent
   ],
   providers: [
     StubTokenService,
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
     imports: [
       MatInputModule,
@@ -90,6 +87,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
         NgOptimizedImage,
         BrowserAnimationsModule
     ],
+  providers: [StubTokenService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

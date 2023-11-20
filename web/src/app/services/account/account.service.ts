@@ -39,16 +39,19 @@ export class AccountService {
   deleteLoggedUser(): Observable<User> {
     let login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/delete`;
-    return this.http.delete<User>(url);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
+    return this.http.delete<User>(url,{headers});
   }
 
-  getUser(login: string): Observable<User> {
+  getLoggedUser(): Observable<User> {
+    const login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user`;
     return this.http.get<User>(url);
   }
 
-  updateUser(login: string, userToUpdate: User): Observable<User> {
-    const url = `${this.apiUrl}${login}/user/update`;
+  updateUser(userToUpdate: User): Observable<User> {
+    const login = this.getLogin();
+    const url = `${this.apiUrl}/${login}/user/update`;
     return this.http.post<User>(url, userToUpdate);
   }
 
