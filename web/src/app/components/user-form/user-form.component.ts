@@ -64,6 +64,7 @@ export class UserFormComponent implements OnInit, OnChanges {
       }
     });
     if (this.invalidValuesInAnyControl) {
+      this.invalidValuesInAnyControl = false;
       return;
     }
     this.user = {

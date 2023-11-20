@@ -1,46 +1,65 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from "../../services/account/account.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ApiError} from "../../models/apiError";
 import {ToastService} from "../../services/toast/toast.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CreditCardValidators} from "angular-cc-library";
 import {User} from "../../models/user";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class SettingsComponent implements OnInit{
+export class SettingsComponent implements OnInit, OnDestroy {
 
   user: User;
   errorOccurredWhenEditing = false;
   errorMessage = "";
+  subscription: Subscription;
+
   constructor(
     private accountService: AccountService,
     private toastService: ToastService,
     private router: Router) {
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.router.navigated = false;
+      }
+    });
   }
 
   ngOnInit(): void {
     this.accountService.getLoggedUser().subscribe({
-      next: value => this.user = value,
-      error: (err: HttpErrorResponse) => {
-        const apiError: ApiError = err.error ;
-        this.toastService.showDanger(apiError?.message ?? "Wystąpił błąd podczas wczytywania danych użytkownika")
-      }
+        next: value => this.user = value,
+        error: (err: HttpErrorResponse) => {
+          const apiError: ApiError = err.error;
+          this.toastService.showDanger(apiError?.message ?? "Wystąpił błąd podczas wczytywania danych użytkownika")
+        }
       }
     )
   }
 
   editAccount(userToEdit: User) {
-    this.errorMessage = "asdasd";
-    this.errorOccurredWhenEditing = true;
-    this.toastService.showSuccess('Edit test');
+    this.accountService.updateUser(userToEdit).subscribe({
+      next: () => {
+        this.router.navigate(['/settings']).then(r =>
+          this.toastService.showSuccess("Pomylnie edytowany dane użytkownika"));
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        let apiError: ApiError = err.error;
+        this.errorMessage = apiError.message;
+        this.errorOccurredWhenEditing = true;
+        this.toastService.showDanger("Wystąpił błąd podczas edycji danych użytkownika");
+      }
+    });
   }
+
   deleteAccount() {
     let deleteConfirmed = confirm('Czy na pewno chcesz usunąć konto?');
     if (!deleteConfirmed) {
@@ -58,5 +77,11 @@ export class SettingsComponent implements OnInit{
         this.toastService.showDanger(error.message);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

@@ -48,8 +48,9 @@ export class AccountService {
     return this.http.get<User>(url);
   }
 
-  updateUser(login: string, userToUpdate: User): Observable<User> {
-    const url = `${this.apiUrl}${login}/user/update`;
+  updateUser(userToUpdate: User): Observable<User> {
+    const login = this.getLogin();
+    const url = `${this.apiUrl}/${login}/user/update`;
     return this.http.post<User>(url, userToUpdate);
   }
 
