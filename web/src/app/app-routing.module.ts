@@ -13,7 +13,7 @@ import {GuardService} from "./services/guard/guard.service";
 const routes: Routes = [{ path: '', component: AppComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
   { path: 'Restaurants/:restaurantName/:p', component: DishesComponent },
-  { path: 'Restaurant/:restaurantName/:dishName', component: DishComponent },
+  { path: 'Dishes/:restaurantName/:dishName', component: DishComponent },
   {
     path: 'register',
     component: RegistrationComponent
@@ -31,6 +31,7 @@ const routes: Routes = [{ path: '', component: AppComponent },
     path: 'cart',
     component: ShoppingCartComponent
   }
+
 ];
 
 @NgModule({
