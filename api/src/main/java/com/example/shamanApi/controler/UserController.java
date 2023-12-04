@@ -68,7 +68,7 @@ public class UserController {
         String token = tokenService.generateToken(authentication);
         UUID loggedUserId = userRepository.findByLogin(userLogin.login()).getUserId();
         Cookie jwtTokenCookie = new Cookie(loggedUserId.toString() ,token);
-        jwtTokenCookie.setMaxAge(86400);
+        jwtTokenCookie.setMaxAge(864000000);
         jwtTokenCookie.setSecure(false);
         jwtTokenCookie.setHttpOnly(true);
         jwtTokenCookie.setPath("/");

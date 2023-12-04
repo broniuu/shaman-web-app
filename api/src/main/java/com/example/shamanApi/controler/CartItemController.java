@@ -49,12 +49,13 @@ public class CartItemController {
      * @param pageNumber numer Strony, którą chcemy wyświetlić
      * @return dania z koszyka
      */
-    @GetMapping(value = "{login}/usercart", params = {"p"})
+    @GetMapping(value = "{login}/usercart")
     public ResponseEntity<Iterable<CartItemDto>> getCartItemsByUser(
             @PathVariable String login,
-            @RequestParam("p") int pageNumber) {
+            @RequestParam(required = false, defaultValue = "0") int pageNumber,
+            @RequestParam(required = false, defaultValue = "1000") int pageSize) {
         if (checkUser(login)) {
-            Page<CartItemDto> resultPage = cartItemService.findPaginatedCartItemsByOwnersLogin(login, pageNumber);
+            Page<CartItemDto> resultPage = cartItemService.findPaginatedCartItemsByOwnersLogin(login, pageNumber, pageSize);
             return new ResponseEntity<>(resultPage, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

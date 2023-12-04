@@ -3,6 +3,9 @@ import {Dish} from "../../../models/dish";
 import {ActivatedRoute, Router} from "@angular/router";
 import {auto} from "@popperjs/core";
 import {Colors} from "../../Colors";
+import {CartService} from "../../../services/cart/cart.service";
+import {ToastService} from "../../../services/toast/toast.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-dish-item',
@@ -18,7 +21,11 @@ export class DishItemComponent implements OnInit {
   public url = "http://localhost:4200/Restaurant/"
   isLoggedIn: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService,
+    private toastService: ToastService) {
   }
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: Event) {
@@ -37,11 +44,17 @@ export class DishItemComponent implements OnInit {
   }
 
 
-  addItemToCasket(dishId: any) {
-
-
-    this.count=0;
-    this.blocekd=true;
+  addToCart(dishId: any) {
+    this.cartService.saveToCart(dishId, this.count).subscribe({
+      next: () => {
+        this.toastService.showSuccess("Dodano do koszyka");
+        this.count=0;
+        this.blocekd=true;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toastService.showDanger(err.error.message);
+      }
+    });
   }
 
   protected readonly auto = auto;

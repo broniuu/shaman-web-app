@@ -1,6 +1,7 @@
 package com.example.shamanApi.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,7 +23,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = UserAlreadyExistException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public ErrorMessage handleUserAlreadyExistsException(UserAlreadyExistException exception, WebRequest request)
+    public ResponseEntity<ErrorMessage> handleUserAlreadyExistsException(UserAlreadyExistException exception, WebRequest request)
     {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.BAD_REQUEST.value(),
@@ -30,7 +31,7 @@ public class GlobalExceptionHandler {
                 exception.getMessage(),
                 request.getDescription(false)
         );
-        return message;
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -42,14 +43,14 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public ErrorMessage resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
 
-        return message;
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -61,13 +62,13 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorMessage globalExceptionHandler(Exception ex, WebRequest request) {
+    public ResponseEntity<ErrorMessage> globalExceptionHandler(Exception ex, WebRequest request) {
         ErrorMessage message = new ErrorMessage(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
 
-        return message;
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 }

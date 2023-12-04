@@ -71,5 +71,9 @@ export class NavbarComponent {
     this.router.navigate(['Restaurants']);
   }
 
+  goToCart() {
+    this.router.navigate(['cart']);
+  }
+
   protected readonly Colors = Colors;
 }
