@@ -11,9 +11,6 @@ export class DishesService {
     const url = 'http://localhost:8082/restaurants/'+restaurantName+'/dishes?p='+page;
     return this.http.get<DishResponse>(url);
   }
-  getDish(restaurantName:string,dishName:string):Observable<Dish>  {
-    const url = 'http://localhost:8082/restaurants/'+restaurantName+'/dishes/'+dishName;
-    return this.http.get<Dish>(url);
-  }
+
   constructor(private http: HttpClient) { }
 }

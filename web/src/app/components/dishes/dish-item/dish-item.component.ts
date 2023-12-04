@@ -17,6 +17,7 @@ export class DishItemComponent implements OnInit {
   public screenHeight: number;
   public blocekd:boolean=true;
   public count:number=0;
+  restaurantName:string=""
   @Input() dish: Dish
   public url = "http://localhost:4200/Restaurant/"
   isLoggedIn: any;
@@ -39,7 +40,8 @@ export class DishItemComponent implements OnInit {
     this.route.paramMap
       .subscribe((params: any) => {
         let name = params.get('restaurantName');
-        this.url = "http:/localhost:4200/Restaurant/" + name + '/1';
+        this.restaurantName=name;
+        this.url = "http:/localhost:4200/Restaurants/" + name + '/1';
       });
   }
 
@@ -62,9 +64,7 @@ export class DishItemComponent implements OnInit {
   protected readonly Colors = Colors;
 
   GotoDish(name: string) {
-
-    this.router.navigate([this.url + name]);
-
+    this.router.navigate(["Dishes/" + this.restaurantName +"/"+name ]);
   }
 
   Increase() {
