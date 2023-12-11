@@ -43,10 +43,10 @@ export class NavbarComponent {
     this.searchBarVisibility=false;
   }
   Account() {
-    this.router.navigate(['signup']);
+    this.router.navigate(['register']);
   }
   GotoHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['/Restaurants']);
   }
 
   Login() {
@@ -56,7 +56,7 @@ export class NavbarComponent {
     this.logged=true;
   }
   LogOut():void{
-      this.router.navigate(['home']);
+      this.router.navigate(['Restaurants']);
   }
   GotoFavorite() {
     this.router.navigate(['favorite']);

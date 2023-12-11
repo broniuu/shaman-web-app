@@ -59,6 +59,7 @@ public class UserService implements IUserService{
         Role userRole = roleRepository.findByName("user");
         List<Role> roles = new ArrayList<>();
         roles.add(userRole);
+        userToRegister.setUserId(UUID.randomUUID());
         userToRegister.setRoles(roles);
         User addedUser = userRepository.save(userToRegister);
         return mapper.map(addedUser, UserDto.class);

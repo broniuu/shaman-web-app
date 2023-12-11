@@ -63,7 +63,7 @@ export class RegistrationComponent implements OnInit{
       email: this.registerForm.controls['email'].value
     };
     this.accountService.register(user).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => this.router.navigate(['Restaurants']),
       error: (err: HttpErrorResponse) => {
         let apiError = err.error;
         this.errorMessage = apiError.message;

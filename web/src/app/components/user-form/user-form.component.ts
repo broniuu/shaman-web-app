@@ -58,6 +58,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     Object.keys(this.userForm.controls).forEach(key => {
       const control = this.userForm.get(key);
       if (control?.errors) {
+        console.log(control)
         this.invalidValuesInAnyControl = true;
         console.log(key, control.errors);
         return;
@@ -91,6 +92,7 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.user)
     this.userForm.controls['login'].setValue(this.user.login);
     this.userForm.controls['name'].setValue(this.user.name);
     this.userForm.controls['surname'].setValue(this.user.surname);

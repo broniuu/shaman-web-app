@@ -29,7 +29,8 @@ const routes: Routes = [{ path: '', component: AppComponent },
   },
   {
     path: 'cart',
-    component: ShoppingCartComponent
+    component: ShoppingCartComponent,
+    canActivate:[GuardService]
   }
 
 ];

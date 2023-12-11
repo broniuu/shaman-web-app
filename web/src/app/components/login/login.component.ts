@@ -45,7 +45,7 @@ export class LoginComponent {
     this.accountService.login(credentials).subscribe({
       next: (loggedSuccessfully) => {
         if(loggedSuccessfully){
-          this.router.navigate(['/']).then();
+          this.router.navigate(['/Restaurants']).then();
           return;
         }
         this.errorOccurredDuringLogin = true;

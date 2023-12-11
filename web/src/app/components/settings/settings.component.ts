@@ -47,7 +47,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   editAccount(userToEdit: User) {
     this.accountService.updateUser(userToEdit).subscribe({
       next: () => {
-        this.router.navigate(['/settings']).then(r =>
+        this.router.navigate(['settings']).then(r =>
           this.toastService.showSuccess("Pomylnie edytowany dane użytkownika"));
       },
       error: (err: HttpErrorResponse) => {
@@ -67,7 +67,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
     this.accountService.deleteLoggedUser().subscribe({
       next: () => {
-        this.router.navigate(['/']).then(() =>
+        this.router.navigate(['Restaurants']).then(() =>
           this.toastService.showSuccess('Konto zostało usunięte')
         );
       },

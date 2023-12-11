@@ -15,7 +15,7 @@ export class GuardService {
       route: ActivatedRouteSnapshot,
       state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/Restaurants');
       return false;
     } else {
       return true;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {environment} from "../../../environments/environment.development";
 import {LocalStorageService} from "../local-storage/local-storage.service";
 import {CartItem} from "../../models/cartItem";
@@ -16,8 +16,14 @@ export class CartService {
 
   getCart() {
     const login = this.storageService.getLogin();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // Add other headers here as needed
+      })
+    };
     const url = `${this.apiUrl}/${login}/usercart`;
-    return this.http.get<CartItemResponse>(url);
+    return this.http.get<CartItemResponse>(url,httpOptions);
   }
 
   saveToCart(dishId: string, count: number) {

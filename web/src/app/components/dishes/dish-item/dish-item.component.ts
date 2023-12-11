@@ -54,7 +54,7 @@ export class DishItemComponent implements OnInit {
         this.blocekd=true;
       },
       error: (err: HttpErrorResponse) => {
-        this.toastService.showDanger(err.error.message);
+        this.toastService.showDanger(err.message);
       }
     });
   }

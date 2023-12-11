@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="Dodanie dania">
-      <change afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node_modules/.yarn-integrity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/yarn.lock" afterDir="false" />
+    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawki 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/dish/dish.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dish/dish.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/user-form/user-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/user-form/user-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/cart/cart.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/cart/cart.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/guard/guard.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/guard/guard.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +57,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/Uprgrades" />
+                    <option name="lastUsedInstant" value="1702304576" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/settings" />
                     <option name="lastUsedInstant" value="1700304099" />
@@ -89,27 +103,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/Restaurants-dish&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kamil/IdeaProjects/shaman-web-app2&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Kamil\\IdeaProjects\\shaman-web-app2\\web\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "feature/Uprgrades",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Kamil/IdeaProjects/shaman-web-app2",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.build",
+    "ts.external.directory.path": "C:\\Users\\Kamil\\IdeaProjects\\shaman-web-app2\\web\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Kamil\IdeaProjects\shaman-web-app2\web\src\app\pipes\filterTextPipe" />
@@ -153,6 +167,7 @@
       <workItem from="1700498303186" duration="2514000" />
       <workItem from="1701587277327" duration="1000" />
       <workItem from="1701620638366" duration="240000" />
+      <workItem from="1702304482003" duration="5873000" />
     </task>
     <task id="LOCAL-00001" summary="restaurant dish podstawowa nawigacja i mapowanie">
       <option name="closed" value="true" />
@@ -259,14 +274,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/web/src/app/components/registration/registration.component.ts</url>
-          <line>15</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts</url>
+          <line>40</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

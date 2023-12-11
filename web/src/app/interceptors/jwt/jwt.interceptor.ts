@@ -11,10 +11,13 @@ import { Observable } from 'rxjs';
 export class JwtInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token = localStorage.getItem('token');
-    if(request.url.endsWith('/login')||request.url.search('/dishes?p=*') || request.url.endsWith('/restaurants') ||request.url.endsWith('/register')){
+    if(!this.shouldIntercept(request.url)){
+      console.log("NON KEy", request.url)
       return next.handle(request);
     }
+
     if (token) {
+      console.log("KEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEYYYYYYYYYYYY")
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -23,5 +26,9 @@ export class JwtInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request);
+  }
+  private shouldIntercept(url: string): boolean {
+
+    return url.includes('save')||url.includes('usercart')||url.includes('user');
   }
 }
