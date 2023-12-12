@@ -10,7 +10,8 @@ import {SettingsComponent} from "./components/settings/settings.component";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {GuardService} from "./services/guard/guard.service";
 
-const routes: Routes = [{ path: '', component: AppComponent },
+const routes: Routes = [
+  { path: '', component: RestaurantsComponent },
   { path: 'Restaurants', component: RestaurantsComponent },
   { path: 'Restaurants/:restaurantName/:p', component: DishesComponent },
   { path: 'Dishes/:restaurantName/:dishName', component: DishComponent },

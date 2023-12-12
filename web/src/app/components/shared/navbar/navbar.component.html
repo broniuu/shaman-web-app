@@ -3,9 +3,9 @@
 
   <button mat-button [matMenuTriggerFor]="belowMenu">  <mat-icon>menu</mat-icon></button>
   <mat-menu #belowMenu="matMenu" yPosition="below">
-    <button (click)="GoToSettings()" mat-menu-item>Settings</button>
-    <button (click)="GotoRestaurants()" mat-menu-item>Restaurants</button>
-    <button (click)="goToCart()" mat-menu-item>Shopping Cart</button>
+    <button *ngIf="logged" (click)="GoToSettings()" mat-menu-item>Ustawienia</button>
+    <button (click)="GotoRestaurants()" mat-menu-item>Restauracje</button>
+    <button *ngIf="logged" (click)="goToCart()" mat-menu-item>Koszyk</button>
   </mat-menu>
   <span (click)="GotoHome()">Shama(n)</span>
   <span class="example-spacer"></span>

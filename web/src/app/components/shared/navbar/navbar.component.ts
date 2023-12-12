@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import {NavbarComunicationService} from "../../../services/navbar/navbar-comunication.service";
 import {Colors} from "../../Colors";
+import {AccountService} from "../../../services/account/account.service";
+import {ToastService} from "../../../services/toast/toast.service";
 
 @Component({
   selector: 'navbar',
@@ -12,10 +14,19 @@ import {Colors} from "../../Colors";
 export class NavbarComponent {
   constructor(private router: Router,
               private sharedService: NavbarComunicationService,
-              private route: ActivatedRoute ) {
-    this.sharedService.functionCalled$.subscribe(() => {
-      this.loggedIn();
+              private accountService: AccountService,
+              private toastService: ToastService) {
+    this.router.events.subscribe(val => {
+      console.log(`test ${this.router.url}`);
+      this.searchBarVisibility = router.url.toLowerCase().startsWith('/restaurants') || router.url === '/';
     });
+    let username = accountService.getLogin();
+    this.loggedUserName = username ?? "";
+    this.logged = !!username;
+    this.sharedService.loggedUserName.subscribe((val) => {
+      this.loggedUserName = val;
+      this.logged = val !== "";
+    })
     this.sharedService.barVisibility$.subscribe(() => {
       this.ShowSearchBar()
     });
@@ -26,6 +37,7 @@ export class NavbarComponent {
   @Input() searchString?: string="";
   logged=false;
   searchBarVisibility=true;
+  loggedUserName = "";
 
   sendString(): void {
     if(this.searchString){
@@ -52,11 +64,12 @@ export class NavbarComponent {
   Login() {
     this.router.navigate(['login']);
   }
-  loggedIn(): void {
-    this.logged=true;
-  }
   LogOut():void{
-      this.router.navigate(['Restaurants']);
+      this.accountService.logout();
+      this.loggedUserName = "";
+      this.logged = false;
+      this.router.navigate(['Restaurants']).then(() =>
+      this.toastService.showSuccess("Pomyślnie wylogowano"));
   }
   GotoFavorite() {
     this.router.navigate(['favorite']);
