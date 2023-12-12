@@ -5,6 +5,8 @@ import {Credentials} from "../../models/credentials";
 import {Router} from "@angular/router";
 import {ApiError} from "../../models/apiError";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ToastService} from "../../services/toast/toast.service";
+import {NavbarComunicationService} from "../../services/navbar/navbar-comunication.service";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,12 @@ export class LoginComponent {
   errorOccurredDuringLogin: boolean = false;
   errorMessage: string = "";
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private accountService: AccountService,
+    private router: Router,
+    private toastService: ToastService,
+    private sharedService: NavbarComunicationService) {
   }
 
   login() {
@@ -45,7 +52,10 @@ export class LoginComponent {
     this.accountService.login(credentials).subscribe({
       next: (loggedSuccessfully) => {
         if(loggedSuccessfully){
-          this.router.navigate(['/Restaurants']).then();
+          this.sharedService.loggedUserChange(credentials.login);
+          this.router.navigate(['/Restaurants']).then(() =>
+            this.toastService.showSuccess("Pomyślnie zalogowano")
+          );
           return;
         }
         this.errorOccurredDuringLogin = true;
