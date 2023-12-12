@@ -64,6 +64,7 @@ export class LoginComponent {
         let apiError = err.error;
         this.errorMessage = apiError.message;
         this.errorOccurredDuringLogin = true;
+        this.toastService.showDanger("Wystąpił błąd podczas logowania");
       }
     });
     if (this.errorOccurredDuringLogin && this.errorMessage === "") {

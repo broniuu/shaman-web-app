@@ -5,6 +5,7 @@ import {AccountService} from "../../services/account/account.service";
 import {User} from "../../models/user";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ToastService} from "../../services/toast/toast.service";
 
 @Component({
   selector: 'app-registration',
@@ -63,7 +64,8 @@ export class RegistrationComponent implements OnInit{
       email: this.registerForm.controls['email'].value
     };
     this.accountService.register(user).subscribe({
-      next: () => this.router.navigate(['Restaurants']),
+      next: () => this.router.navigate(['login'])
+        .then(() => this.toastService.showSuccess('Utworzono konto')),
       error: (err: HttpErrorResponse) => {
         let apiError = err.error;
         this.errorMessage = apiError.message;
@@ -75,7 +77,8 @@ export class RegistrationComponent implements OnInit{
     }
   }
 
-  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) {
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router,
+              private toastService: ToastService) {
   }
 
   ngOnInit(): void {

@@ -24,7 +24,7 @@ export class AccountService {
   }
   isLoggedIn() {
     const jwtHelper = new JwtHelperService();
-    const token = localStorage.getItem('token');
+    const token = this.getToken();
     if (!token) {
       return false;
     }
