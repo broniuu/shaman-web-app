@@ -17,7 +17,6 @@ export class NavbarComponent {
               private accountService: AccountService,
               private toastService: ToastService) {
     this.router.events.subscribe(val => {
-      console.log(`test ${this.router.url}`);
       this.searchBarVisibility = router.url.toLowerCase().startsWith('/restaurants') || router.url === '/';
     });
     let username = accountService.getLogin();

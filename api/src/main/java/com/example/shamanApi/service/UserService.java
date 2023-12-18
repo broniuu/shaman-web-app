@@ -1,5 +1,6 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.RoleDto;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UserAlreadyExistException;
 import com.example.shamanApi.exception.UserNotFoundException;
@@ -137,10 +138,29 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public boolean checkRoleOfLoggedUser(String roleName) {
+    public List<UserDto> showAllUsers() {
+        Iterable<User> users = userRepository.findAll();
+        List<UserDto> userDtos = new ArrayList<>();
+        for (User user : users) {
+            userDtos.add(mapper.map(user, UserDto.class));
+        }
+        return userDtos;
+    }
+
+    @Override
+    public boolean checkIfLoggedUserHasRole(String roleName) {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByLogin(login);
         return user.getRoles().stream().anyMatch(r -> Objects.equals(r.getName(), roleName));
+    }
+
+    public List<RoleDto> showAllRoles() {
+        Iterable<Role> roles = roleRepository.findAll();
+        List<RoleDto> roleDtos = new ArrayList<>();
+        for (Role role : roles) {
+            roleDtos.add(mapper.map(role, RoleDto.class));
+        }
+        return roleDtos;
     }
 
     /**

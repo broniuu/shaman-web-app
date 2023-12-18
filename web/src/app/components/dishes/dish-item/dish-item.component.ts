@@ -81,7 +81,6 @@ export class DishItemComponent implements OnInit {
     }else{
       this.blocekd=true;
     }
-    console.log(this.blocekd)
   }
 
   Decrease() {

@@ -1,5 +1,7 @@
 package com.example.shamanApi.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +16,8 @@ import java.util.Date;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     /**
      * Zwraca komunikat o błędzie związanym z tworzeniem nowego konta
      *
@@ -31,7 +35,18 @@ public class GlobalExceptionHandler {
                 exception.getMessage(),
                 request.getDescription(false)
         );
+        logError(exception);
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    private void logError(Exception exception) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(exception.getMessage()).append('\n');
+        exception.getStackTrace();
+        for (StackTraceElement element : exception.getStackTrace()){
+            stringBuilder.append(element.toString()).append('\n');
+        }
+        logger.error(stringBuilder.toString());
     }
 
     /**
@@ -49,8 +64,20 @@ public class GlobalExceptionHandler {
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
-
+        logError(ex);
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(value = HttpStatus.UNAUTHORIZED)
+    public ResponseEntity<ErrorMessage> unauthorizedException(UnauthorizedException ex, WebRequest request) {
+        ErrorMessage message = new ErrorMessage(
+                HttpStatus.UNAUTHORIZED.value(),
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        logError(ex);
+        return new ResponseEntity<>(message, HttpStatus.UNAUTHORIZED);
     }
 
     /**
@@ -68,7 +95,7 @@ public class GlobalExceptionHandler {
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
-
+        logError(ex);
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 }
