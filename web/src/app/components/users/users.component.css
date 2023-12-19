@@ -1,16 +1,3 @@
-mat-card {
-  width: 60%;
-  margin: 2% auto;
-  display: flex;
-  flex-direction: column;
-}
-
-mat-form-field {
-  width: 100%;
-  justify-content: center;
-  align-self: center;
-}
-
 .edit-users {
   overflow: auto;
   width: 100%;
@@ -20,6 +7,11 @@ mat-form-field {
 
 .full-width-table {
   width: 100%;
+}
+
+mat-form-field {
+  padding: 10px;
+  padding-bottom: 0px;
 }
 
 .reset {
@@ -39,4 +31,9 @@ mat-form-field {
 
 tr.readonly {
   background-color: #eeeeee;
+}
+
+.row-text {
+  font-size: 16px;
+  width: 100%;
 }
