@@ -1,5 +1,6 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.RoleDto;
 import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 
@@ -16,6 +17,8 @@ public interface IUserService {
     ShortUserInfoDto updateUser(ShortUserInfoDto userDto);
 
     UserDto showUserAccount(String login);
+
+    List<RoleDto> showUserRoles(String login);
 
     List<ShortUserInfoDto> showAllUsers();
 

@@ -6,6 +6,7 @@ import {Credentials} from "../../models/credentials";
 import {TokenContainer} from "../../models/tokenContainer";
 import {environment} from "../../../environments/environment.development";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {Role} from "../../models/role";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,12 @@ export class AccountService {
     const login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user`;
     return this.http.get<User>(url);
+  }
+
+  getLoggedUserRoles(): Observable<Role[]> {
+    const login = this.getLogin();
+    const url = `${this.apiUrl}/${login}/roles`;
+    return this.http.get<Role[]>(url);
   }
 
   updateUser(userToUpdate: User): Observable<User> {

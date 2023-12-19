@@ -11,9 +11,6 @@ import com.example.shamanApi.repository.RoleRepository;
 import com.example.shamanApi.repository.UserRepository;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -160,6 +157,16 @@ public class UserService implements IUserService{
         }
         User user = userRepository.findByLogin(login);
         return mapper.map(user, UserDto.class);
+    }
+
+    @Override
+    public List<RoleDto> showUserRoles(String login) {
+        if (userRepository.findByLogin(login) == null) {
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
+                    + login);
+        }
+        User user = userRepository.findByLogin(login);
+        return user.getRoles().stream().map(r -> mapper.map(r, RoleDto.class)).toList();
     }
 
     @Override

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AccountService} from "../../services/account/account.service";
 import {Credentials} from "../../models/credentials";
@@ -14,7 +14,7 @@ import {NavbarComunicationService} from "../../services/navbar/navbar-comunicati
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm : FormGroup = this.fb.group({
+  loginForm: FormGroup = this.fb.group({
     login: ['', [Validators.required]],
     password: ['', [Validators.required]]
   });
@@ -51,12 +51,17 @@ export class LoginComponent {
     }
     this.accountService.login(credentials).subscribe({
       next: (loggedSuccessfully) => {
-        if(loggedSuccessfully){
-          this.sharedService.loggedUserChange(credentials.login);
-          this.router.navigate(['/Restaurants']).then(() =>
-            this.toastService.showSuccess("Pomyślnie zalogowano")
-          );
-          return;
+        if (loggedSuccessfully) {
+          this.accountService.getLoggedUserRoles().subscribe({
+              next: (r) => {
+                this.sharedService.loggedUserChange(credentials.login, r.map<string>(r => r.name));
+                this.router.navigate(['/Restaurants']).then(() =>
+                  this.toastService.showSuccess("Pomyślnie zalogowano")
+                );
+                return;
+              }
+            }
+          )
         }
         this.errorOccurredDuringLogin = true;
       },

@@ -25,7 +25,10 @@ export class NavbarComponent {
     this.sharedService.loggedUserName.subscribe((val) => {
       this.loggedUserName = val;
       this.logged = val !== "";
-    })
+    });
+    this.sharedService.loggedUserRoles.subscribe((val) => {
+      this.roles = val;
+    });
     this.sharedService.barVisibility$.subscribe(() => {
       this.ShowSearchBar()
     });
@@ -37,6 +40,7 @@ export class NavbarComponent {
   logged=false;
   searchBarVisibility=true;
   loggedUserName = "";
+  roles: string[] = [];
 
   sendString(): void {
     if(this.searchString){

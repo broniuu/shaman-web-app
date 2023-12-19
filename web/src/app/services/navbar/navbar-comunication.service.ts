@@ -10,9 +10,11 @@ export class NavbarComunicationService {
   private  barInvisibleSource = new Subject<void>();
   private  filterSource = new Subject<void>();
   loggedUserName: Subject<string> = new Subject();
+  loggedUserRoles: Subject<string[]> = new Subject();
 
-  loggedUserChange(name: string) {
+  loggedUserChange(name: string, roles: string[]) {
     this.loggedUserName.next(name);
+    this.loggedUserRoles.next(roles);
   }
 
   private stringSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');

@@ -5,6 +5,7 @@ import com.example.shamanApi.dto.RoleDto;
 import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UnauthorizedException;
+import com.example.shamanApi.model.Role;
 import com.example.shamanApi.repository.UserRepository;
 import com.example.shamanApi.service.TokenService;
 import com.example.shamanApi.service.UserService;
@@ -134,6 +135,17 @@ public class UserController {
         if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
              shown = userService.showUserAccount(login);
             return new ResponseEntity<>(shown, HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping(value = "{login}/roles")
+    public ResponseEntity<List<RoleDto>> showUserRoles(@PathVariable String login) {
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
+            List<RoleDto> roles = userService.showUserRoles(login);
+            return new ResponseEntity<>(roles, HttpStatus.OK);
 
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
