@@ -87,5 +87,9 @@ export class NavbarComponent {
     this.router.navigate(['cart']);
   }
 
+  goToUsers() {
+    this.router.navigate(['users'])
+  }
+
   protected readonly Colors = Colors;
 }

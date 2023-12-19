@@ -78,7 +78,7 @@
               <button *ngIf="row.editable" mat-icon-button color="warn" focusable="false" (click)="cancel(row)">
                 <mat-icon>close</mat-icon>
               </button>
-              <button *ngIf="!row.editable" mat-icon-button color="warn" focusable="false" (click)="delete(row)">
+              <button *ngIf="!row.editable" mat-icon-button color="warn" focusable="false" (click)="delete(row, i)">
                 <mat-icon>delete</mat-icon>
               </button>
             </span>

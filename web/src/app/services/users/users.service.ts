@@ -24,4 +24,8 @@ export class UsersService {
   modifyUser(user: UserShortInfo) {
     return this.http.post<UserShortInfo>(`${this.apiUrl}/users/update`, user);
   }
+
+  deleteUser(login: string) {
+    return this.http.delete<User>(`${this.apiUrl}/${login}/user/delete`)
+  }
 }

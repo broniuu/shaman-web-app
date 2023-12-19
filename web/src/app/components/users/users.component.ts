@@ -15,7 +15,7 @@ import {AccountService} from "../../services/account/account.service";
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent implements OnInit, AfterContentInit{
+export class UsersComponent implements OnInit, AfterContentInit {
 
   editUsers: EditUser[] = [];
   displayedColumns: string[] = ['name', 'surname', 'login', 'email', 'roles', 'action'];
@@ -123,10 +123,10 @@ export class UsersComponent implements OnInit, AfterContentInit{
   }
 
   formatRoles(roles: Role[] | undefined) {
-      if(!roles) {
-        return
-      }
-      return roles.map<string>(r => `${r.name}`).join(', ');
+    if (!roles) {
+      return
+    }
+    return roles.map<string>(r => `${r.name}`).join(', ');
   }
 
   cancel(row: EditUser) {
@@ -143,7 +143,22 @@ export class UsersComponent implements OnInit, AfterContentInit{
     row.validator.controls['roles'].patchValue(row.currentData?.roles.map<any>(x => x.roleId))
   }
 
-  delete(row: EditUser) {
-
+  delete(row: EditUser, index: number) {
+    if (!row.currentData) {
+      return;
+    }
+    this.usersService.deleteUser(row.currentData.login).subscribe({
+        next: () => {
+          this.toastService.showSuccess('Usunięto użytkownika');
+          const data = this.dataSource.data;
+          data.splice(index, 1);
+          this.dataSource.data = data;
+        },
+        error: (err: HttpErrorResponse) => {
+          let errorMessage: string = err.error.message ?? 'Wystąpił błąd poczas usówania';
+          this.toastService.showDanger(errorMessage)
+        }
+      }
+    )
   }
 }
