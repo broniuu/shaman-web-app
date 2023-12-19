@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     debitCardNumber: '',
     expireDate: '',
     cvv: '',
-    email: ''
+    email: '',
   };
 
   @Output() submitEvent = new EventEmitter<User>;
@@ -77,7 +77,7 @@ export class UserFormComponent implements OnInit, OnChanges {
       debitCardNumber: this.userForm.controls['debitCardNumber'].value,
       expireDate: this.userForm.controls['expireDate'].value,
       cvv: this.userForm.controls['cvv'].value,
-      email: this.userForm.controls['email'].value
+      email: this.userForm.controls['email'].value,
     };
     this.submitEvent.emit(this.user);
   }

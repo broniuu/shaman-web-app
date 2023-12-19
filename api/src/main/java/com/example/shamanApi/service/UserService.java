@@ -1,5 +1,7 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.RoleDto;
+import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UserAlreadyExistException;
 import com.example.shamanApi.exception.UserNotFoundException;
@@ -14,10 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Obsługuje operacje związane z zarządzaniem użytkownikami
@@ -102,6 +101,30 @@ public class UserService implements IUserService{
         return mapper.map(userToUpdate, UserDto.class);
     }
 
+    @Override
+    public ShortUserInfoDto updateUser(ShortUserInfoDto userDto) {
+        Optional<User> userToUpdateOptional = userRepository.findById(userDto.getUserId());
+        if (userToUpdateOptional.isEmpty()) {
+            throw new UserNotFoundException("Nie można edytować nieistniejącego użytkownika");
+        }
+        User userToUpdate = userToUpdateOptional.get();
+        userToUpdate.setLogin(userDto.getLogin());
+        userToUpdate.setName(userDto.getName());
+        userToUpdate.setSurname(userDto.getName());
+        userToUpdate.setEmail(userDto.getEmail());
+        List<Role> rolesToUpdate = new ArrayList<>();
+        for (RoleDto roleDto : userDto.getRoles()) {
+            Optional<Role> roleOptional = roleRepository.findById(roleDto.getRoleId());
+            if (roleOptional.isEmpty()){
+                continue;
+            }
+            rolesToUpdate.add(roleOptional.get());
+        }
+        userToUpdate.setRoles(rolesToUpdate);
+        userRepository.save(userToUpdate);
+        return userDto;
+    }
+
     /**
      * Konwertuje obiekt UserDto do obietku User
      *
@@ -137,10 +160,39 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public boolean checkRoleOfLoggedUser(String roleName) {
+    public List<RoleDto> showUserRoles(String login) {
+        if (userRepository.findByLogin(login) == null) {
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
+                    + login);
+        }
+        User user = userRepository.findByLogin(login);
+        return user.getRoles().stream().map(r -> mapper.map(r, RoleDto.class)).toList();
+    }
+
+    @Override
+    public List<ShortUserInfoDto> showAllUsers() {
+        Iterable<User> users = userRepository.findAll();
+        List<ShortUserInfoDto> userDtos = new ArrayList<>();
+        for (User user : users) {
+            userDtos.add(mapper.map(user, ShortUserInfoDto.class));
+        }
+        return userDtos;
+    }
+
+    @Override
+    public boolean checkIfLoggedUserHasRole(String roleName) {
         String login = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByLogin(login);
         return user.getRoles().stream().anyMatch(r -> Objects.equals(r.getName(), roleName));
+    }
+
+    public List<RoleDto> showAllRoles() {
+        Iterable<Role> roles = roleRepository.findAll();
+        List<RoleDto> roleDtos = new ArrayList<>();
+        for (Role role : roles) {
+            roleDtos.add(mapper.map(role, RoleDto.class));
+        }
+        return roleDtos;
     }
 
     /**

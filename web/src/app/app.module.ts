@@ -16,7 +16,7 @@ import { DishComponent } from './components/dish/dish.component';
 import { RestaurantItemComponent } from './components/restaurants/restaurant-item/restaurant-item.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
-import {NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 
 import { DishItemComponent } from './components/dishes/dish-item/dish-item.component';
 import { FilterTextPipe } from './pipes/filterTextPipe/filter-text.pipe';
@@ -39,6 +39,10 @@ import {ToastsContainerComponent } from './components/toasts-container/toasts-co
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
+import { UsersComponent } from './components/users/users.component';
+import {MatTableModule} from "@angular/material/table";
+import { TypeSafeMatCellDef } from './directives/type-safe-mat-cell-def.directive';
+import { FormControlPipe } from './directives/formControll/form-controll.pipe';
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -57,41 +61,45 @@ import { JwtInterceptor } from './interceptors/jwt/jwt.interceptor';
     SettingsComponent,
     ToastsContainerComponent,
     UserFormComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    UsersComponent,
+    TypeSafeMatCellDef,
+    FormControlPipe
   ],
   providers: [
     StubTokenService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
-    imports: [
-      MatInputModule,
-      MatMenuModule,
-      MatExpansionModule,
-      MatOptionModule,
-      MatSelectModule,
-      MatSnackBarModule,
-      MatToolbarModule,
-      MatButtonModule,
-      MatIconModule,
-      MatCardModule,
-      MatButtonModule,
-      MatButtonModule,
-      MatExpansionModule,
-      MatIconModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatDatepickerModule,
-      MatNativeDateModule,
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NgbModule,
-        CreditCardDirectivesModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NgOptimizedImage,
-        BrowserAnimationsModule
-    ],
+  imports: [
+    MatInputModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    CreditCardDirectivesModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgOptimizedImage,
+    BrowserAnimationsModule,
+    MatTableModule,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

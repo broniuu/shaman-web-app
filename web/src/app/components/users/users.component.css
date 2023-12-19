@@ -1,0 +1,39 @@
+.edit-users {
+  overflow: auto;
+  width: 100%;
+  justify-content: center;
+  align-self: center;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+mat-form-field {
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+.reset {
+  margin-top: 30px;
+  width: 20%;
+  justify-content: center;
+  align-self: center;
+}
+
+.submit {
+  margin-top: 30px;
+  width: 20%;
+  justify-content: center;
+  align-self: center;
+  margin-left: 60%;
+}
+
+tr.readonly {
+  background-color: #eeeeee;
+}
+
+.row-text {
+  font-size: 16px;
+  width: 100%;
+}

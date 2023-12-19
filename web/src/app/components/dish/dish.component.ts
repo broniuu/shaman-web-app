@@ -41,7 +41,6 @@ export class DishComponent implements OnInit {
     }else{
       this.blocked=true;
     }
-    console.log(this.blocked)
   }
   Increase() {
     if(this.count > 98 ){

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RestaurantsComponent} from "./components/restaurants/restaurants.component";
 import {AppComponent} from "./app.component";
@@ -9,6 +9,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {SettingsComponent} from "./components/settings/settings.component";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {GuardService} from "./services/guard/guard.service";
+import {UsersComponent} from "./components/users/users.component";
 
 const routes: Routes = [
   { path: '', component: RestaurantsComponent },
@@ -32,12 +33,17 @@ const routes: Routes = [
     path: 'cart',
     component: ShoppingCartComponent,
     canActivate:[GuardService]
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
   }
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  schemas:[]
 })
 export class AppRoutingModule { }

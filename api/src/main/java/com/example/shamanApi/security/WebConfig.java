@@ -23,6 +23,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addMapping("/login").allowedOrigins("http://localhost:4200/login").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
         registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
         registry.addMapping("*/usercart").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
+        registry.addMapping("*/user/delete").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PUT", "DELETE").allowCredentials(true);
     }
 
     public class SimpleCORSFilter implements Filter {

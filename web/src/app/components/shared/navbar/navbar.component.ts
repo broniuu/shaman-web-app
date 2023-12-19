@@ -17,7 +17,6 @@ export class NavbarComponent {
               private accountService: AccountService,
               private toastService: ToastService) {
     this.router.events.subscribe(val => {
-      console.log(`test ${this.router.url}`);
       this.searchBarVisibility = router.url.toLowerCase().startsWith('/restaurants') || router.url === '/';
     });
     let username = accountService.getLogin();
@@ -26,7 +25,10 @@ export class NavbarComponent {
     this.sharedService.loggedUserName.subscribe((val) => {
       this.loggedUserName = val;
       this.logged = val !== "";
-    })
+    });
+    this.sharedService.loggedUserRoles.subscribe((val) => {
+      this.roles = val;
+    });
     this.sharedService.barVisibility$.subscribe(() => {
       this.ShowSearchBar()
     });
@@ -38,6 +40,7 @@ export class NavbarComponent {
   logged=false;
   searchBarVisibility=true;
   loggedUserName = "";
+  roles: string[] = [];
 
   sendString(): void {
     if(this.searchString){
@@ -86,6 +89,10 @@ export class NavbarComponent {
 
   goToCart() {
     this.router.navigate(['cart']);
+  }
+
+  goToUsers() {
+    this.router.navigate(['users'])
   }
 
   protected readonly Colors = Colors;

@@ -1,8 +1,11 @@
 package com.example.shamanApi.controler;
 
 import com.example.shamanApi.dto.LoginRequest;
-import com.example.shamanApi.model.User;
+import com.example.shamanApi.dto.RoleDto;
+import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
+import com.example.shamanApi.exception.UnauthorizedException;
+import com.example.shamanApi.model.Role;
 import com.example.shamanApi.repository.UserRepository;
 import com.example.shamanApi.service.TokenService;
 import com.example.shamanApi.service.UserService;
@@ -10,14 +13,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 import static com.example.shamanApi.security.Utilities.checkUser;
@@ -85,13 +86,12 @@ public class UserController {
     @DeleteMapping(value = "{login}/user/delete")
     public ResponseEntity<UserDto> deleteUserAccount(@PathVariable String login) {
         UserDto deleted = null;
-        if(checkUser(login)){
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
             deleted = userService.deleteUserAccount(login);
             return new ResponseEntity<>(deleted, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
     }
 
     /**
@@ -103,8 +103,19 @@ public class UserController {
      */
     @PostMapping(value = "{login}/user/update")
     public ResponseEntity<UserDto> updateUserAccount(@PathVariable String login, @RequestBody UserDto userDto) {
-        if(checkUser(login)){
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
             UserDto updated = userService.updateUserAccount(login, userDto);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+    }
+
+    @PostMapping(value = "users/update")
+    public ResponseEntity<ShortUserInfoDto> updateUser(@RequestBody ShortUserInfoDto userDto) {
+        if(userService.checkIfLoggedUserHasRole("admin")){
+            ShortUserInfoDto updated = userService.updateUser(userDto);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -121,7 +132,7 @@ public class UserController {
     @GetMapping(value = "{login}/user")
     public ResponseEntity<UserDto> showUserAccount(@PathVariable String login) {
         UserDto shown = null;
-        if(checkUser(login)){
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
              shown = userService.showUserAccount(login);
             return new ResponseEntity<>(shown, HttpStatus.OK);
 
@@ -130,4 +141,32 @@ public class UserController {
         }
     }
 
+    @GetMapping(value = "{login}/roles")
+    public ResponseEntity<List<RoleDto>> showUserRoles(@PathVariable String login) {
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
+            List<RoleDto> roles = userService.showUserRoles(login);
+            return new ResponseEntity<>(roles, HttpStatus.OK);
+
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+    }
+
+    @GetMapping(value = "/users")
+    public ResponseEntity<List<ShortUserInfoDto>> showAllUsers() {
+        if (!userService.checkIfLoggedUserHasRole("admin")) {
+            throw new UnauthorizedException("Tylko administratorzy mają dostęp do innych użytkowników");
+        }
+        List<ShortUserInfoDto> users = userService.showAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/roles")
+    public ResponseEntity<List<RoleDto>> showAllRoles() {
+        if (!userService.checkIfLoggedUserHasRole("admin")) {
+            throw new UnauthorizedException("Tylko administratorzy mają dostęp do ról");
+        }
+        List<RoleDto> roles = userService.showAllRoles();
+        return new ResponseEntity<>(roles, HttpStatus.OK);
+    }
 }
