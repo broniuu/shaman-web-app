@@ -1,5 +1,6 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 
 import java.util.List;
@@ -11,9 +12,12 @@ public interface IUserService {
     UserDto registerNewUserAccount(UserDto userDto);
     UserDto deleteUserAccount(String login);
     UserDto updateUserAccount(String login, UserDto userDto);
+
+    ShortUserInfoDto updateUser(ShortUserInfoDto userDto);
+
     UserDto showUserAccount(String login);
 
-    List<UserDto> showAllUsers();
+    List<ShortUserInfoDto> showAllUsers();
 
     boolean checkIfLoggedUserHasRole(String roleName);
 }

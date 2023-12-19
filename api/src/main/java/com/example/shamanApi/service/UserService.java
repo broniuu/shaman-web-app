@@ -1,6 +1,7 @@
 package com.example.shamanApi.service;
 
 import com.example.shamanApi.dto.RoleDto;
+import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UserAlreadyExistException;
 import com.example.shamanApi.exception.UserNotFoundException;
@@ -10,15 +11,15 @@ import com.example.shamanApi.repository.RoleRepository;
 import com.example.shamanApi.repository.UserRepository;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Obsługuje operacje związane z zarządzaniem użytkownikami
@@ -103,6 +104,30 @@ public class UserService implements IUserService{
         return mapper.map(userToUpdate, UserDto.class);
     }
 
+    @Override
+    public ShortUserInfoDto updateUser(ShortUserInfoDto userDto) {
+        Optional<User> userToUpdateOptional = userRepository.findById(userDto.getUserId());
+        if (userToUpdateOptional.isEmpty()) {
+            throw new UserNotFoundException("Nie można edytować nieistniejącego użytkownika");
+        }
+        User userToUpdate = userToUpdateOptional.get();
+        userToUpdate.setLogin(userDto.getLogin());
+        userToUpdate.setName(userDto.getName());
+        userToUpdate.setSurname(userDto.getName());
+        userToUpdate.setEmail(userDto.getEmail());
+        List<Role> rolesToUpdate = new ArrayList<>();
+        for (RoleDto roleDto : userDto.getRoles()) {
+            Optional<Role> roleOptional = roleRepository.findById(roleDto.getRoleId());
+            if (roleOptional.isEmpty()){
+                continue;
+            }
+            rolesToUpdate.add(roleOptional.get());
+        }
+        userToUpdate.setRoles(rolesToUpdate);
+        userRepository.save(userToUpdate);
+        return userDto;
+    }
+
     /**
      * Konwertuje obiekt UserDto do obietku User
      *
@@ -138,11 +163,11 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public List<UserDto> showAllUsers() {
+    public List<ShortUserInfoDto> showAllUsers() {
         Iterable<User> users = userRepository.findAll();
-        List<UserDto> userDtos = new ArrayList<>();
+        List<ShortUserInfoDto> userDtos = new ArrayList<>();
         for (User user : users) {
-            userDtos.add(mapper.map(user, UserDto.class));
+            userDtos.add(mapper.map(user, ShortUserInfoDto.class));
         }
         return userDtos;
     }

@@ -2,9 +2,9 @@ package com.example.shamanApi.controler;
 
 import com.example.shamanApi.dto.LoginRequest;
 import com.example.shamanApi.dto.RoleDto;
+import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
 import com.example.shamanApi.exception.UnauthorizedException;
-import com.example.shamanApi.repository.RoleRepository;
 import com.example.shamanApi.repository.UserRepository;
 import com.example.shamanApi.service.TokenService;
 import com.example.shamanApi.service.UserService;
@@ -15,7 +15,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 
 import javax.servlet.http.Cookie;
 import java.util.List;
@@ -113,6 +112,17 @@ public class UserController {
 
     }
 
+    @PostMapping(value = "users/update")
+    public ResponseEntity<ShortUserInfoDto> updateUser(@RequestBody ShortUserInfoDto userDto) {
+        if(userService.checkIfLoggedUserHasRole("admin")){
+            ShortUserInfoDto updated = userService.updateUser(userDto);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+
+    }
+
     /**
      * Wyświetlenie danych użytkownika
      *
@@ -132,11 +142,11 @@ public class UserController {
     }
 
     @GetMapping(value = "/users")
-    public ResponseEntity<List<UserDto>> showAllUsers() {
+    public ResponseEntity<List<ShortUserInfoDto>> showAllUsers() {
         if (!userService.checkIfLoggedUserHasRole("admin")) {
             throw new UnauthorizedException("Tylko administratorzy mają dostęp do innych użytkowników");
         }
-        List<UserDto> users = userService.showAllUsers();
+        List<ShortUserInfoDto> users = userService.showAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 

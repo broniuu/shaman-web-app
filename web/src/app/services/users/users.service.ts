@@ -20,4 +20,8 @@ export class UsersService {
   getAllRoles() {
     return this.http.get<Role[]>(`${this.apiUrl}/roles`);
   }
+
+  modifyUser(user: UserShortInfo) {
+    return this.http.post<UserShortInfo>(`${this.apiUrl}/users/update`, user);
+  }
 }
