@@ -1,5 +1,6 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.EditUserDto;
 import com.example.shamanApi.dto.RoleDto;
 import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
@@ -12,7 +13,8 @@ import java.util.List;
 public interface IUserService {
     UserDto registerNewUserAccount(UserDto userDto);
     UserDto deleteUserAccount(String login);
-    UserDto updateUserAccount(String login, UserDto userDto);
+
+    EditUserDto updateUserAccount(String login, EditUserDto userDto);
 
     ShortUserInfoDto updateUser(ShortUserInfoDto userDto);
 

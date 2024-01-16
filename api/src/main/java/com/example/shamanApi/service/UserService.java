@@ -1,5 +1,6 @@
 package com.example.shamanApi.service;
 
+import com.example.shamanApi.dto.EditUserDto;
 import com.example.shamanApi.dto.RoleDto;
 import com.example.shamanApi.dto.ShortUserInfoDto;
 import com.example.shamanApi.dto.UserDto;
@@ -86,19 +87,19 @@ public class UserService implements IUserService{
      * Aktualizowanie danych użytkownika
      *
      * @param login   login do aktualizowanego konta
-     * @param userDto dane do aktualizacji
+     * @param editUserDto dane do aktualizacji
      * @return zaktualizowany użytkownik
      */
     @Override
-    public UserDto updateUserAccount(String login, UserDto userDto) {
+    public EditUserDto updateUserAccount(String login, EditUserDto editUserDto) {
         User userToUpdate = userRepository.findByLogin(login);
         if (userToUpdate == null) {
             throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
                     + login);
         }
-        changeUserDtoToUser(userDto, userToUpdate);
+        changeEditUserDtoToUser(editUserDto, userToUpdate);
         userRepository.save(userToUpdate);
-        return mapper.map(userToUpdate, UserDto.class);
+        return mapper.map(userToUpdate, EditUserDto.class);
     }
 
     @Override
@@ -126,21 +127,20 @@ public class UserService implements IUserService{
     }
 
     /**
-     * Konwertuje obiekt UserDto do obietku User
+     * Konwertuje obiekt EditUserDto do obietku User
      *
-     * @param userDto           obiekt do konwersji
+     * @param editUserDto           obiekt do konwersji
      * @param userToUpdate      skonwertowany obiekt User
      */
-    private void changeUserDtoToUser(UserDto userDto, User userToUpdate) {
-        userToUpdate.setLogin(userDto.getLogin());
-        encodePassword(userToUpdate, userDto);
-        userToUpdate.setName(userDto.getName());
-        userToUpdate.setSurname(userDto.getSurname());
-        userToUpdate.setAddress(userDto.getAddress());
-        userToUpdate.setDebitCardNumber(userDto.getDebitCardNumber());
-        userToUpdate.setExpireDate(userDto.getExpireDate());
-        userToUpdate.setCvv(userDto.getCvv());
-        userToUpdate.setEmail(userDto.getEmail());
+    private void changeEditUserDtoToUser(EditUserDto editUserDto, User userToUpdate) {
+        userToUpdate.setLogin(editUserDto.getLogin());
+        userToUpdate.setName(editUserDto.getName());
+        userToUpdate.setSurname(editUserDto.getSurname());
+        userToUpdate.setAddress(editUserDto.getAddress());
+        userToUpdate.setDebitCardNumber(editUserDto.getDebitCardNumber());
+        userToUpdate.setExpireDate(editUserDto.getExpireDate());
+        userToUpdate.setCvv(editUserDto.getCvv());
+        userToUpdate.setEmail(editUserDto.getEmail());
     }
 
     /**

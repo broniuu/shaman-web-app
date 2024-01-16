@@ -1,9 +1,6 @@
 package com.example.shamanApi.controler;
 
-import com.example.shamanApi.dto.LoginRequest;
-import com.example.shamanApi.dto.RoleDto;
-import com.example.shamanApi.dto.ShortUserInfoDto;
-import com.example.shamanApi.dto.UserDto;
+import com.example.shamanApi.dto.*;
 import com.example.shamanApi.exception.UnauthorizedException;
 import com.example.shamanApi.model.Role;
 import com.example.shamanApi.repository.UserRepository;
@@ -98,13 +95,13 @@ public class UserController {
      * Aktualizowanie danych użytkownika
      *
      * @param login     login do aktualizowanego konta
-     * @param userDto   dane do aktualizacji
+     * @param editUserDto   dane do aktualizacji
      * @return          zaktualizowany użytkownik
      */
     @PostMapping(value = "{login}/user/update")
-    public ResponseEntity<UserDto> updateUserAccount(@PathVariable String login, @RequestBody UserDto userDto) {
+    public ResponseEntity<EditUserDto> updateUserAccount(@PathVariable String login, @RequestBody EditUserDto editUserDto) {
         if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
-            UserDto updated = userService.updateUserAccount(login, userDto);
+            EditUserDto updated = userService.updateUserAccount(login, editUserDto);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);

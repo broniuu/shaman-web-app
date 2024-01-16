@@ -7,6 +7,8 @@ import {TokenContainer} from "../../models/tokenContainer";
 import {environment} from "../../../environments/environment.development";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Role} from "../../models/role";
+import {EditUser} from "../../models/editUser";
+import {NavbarComunicationService} from "../navbar/navbar-comunication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AccountService {
   static readonly localStorageTokenKey = 'token';
   static readonly localStorageLoginKey = 'login'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private navbarCommunicationService: NavbarComunicationService) { }
 
   register(userToRegister: User): Observable<User>  {
     const url = `${this.apiUrl}/user/registration`;
@@ -63,10 +65,10 @@ export class AccountService {
     return this.http.get<Role[]>(url);
   }
 
-  updateUser(userToUpdate: User): Observable<User> {
+  updateUser(userToUpdate: EditUser): Observable<EditUser> {
     const login = this.getLogin();
     const url = `${this.apiUrl}/${login}/user/update`;
-    return this.http.post<User>(url, userToUpdate);
+    return this.http.post<EditUser>(url, userToUpdate);
   }
 
   getToken(): string | null {
@@ -80,5 +82,6 @@ export class AccountService {
   logout() {
     localStorage.removeItem(AccountService.localStorageLoginKey);
     localStorage.removeItem(AccountService.localStorageTokenKey);
+    this.navbarCommunicationService.loggedUserChange('', []);
   }
 }

@@ -5,16 +5,16 @@ import {User} from "../../models/user";
 import {HttpErrorResponse} from "@angular/common/http";
 import {AccountService} from "../../services/account/account.service";
 import {Router} from "@angular/router";
+import {EditUser} from "../../models/editUser";
 
 @Component({
   selector: 'user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent implements OnInit, OnChanges {
-  @Input() user: User = {
+export class UserFormComponent implements OnChanges {
+  @Input() user: EditUser = {
     login: '',
-    password: '',
     name: '',
     surname: '',
     address: '',
@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     email: '',
   };
 
-  @Output() submitEvent = new EventEmitter<User>;
+  @Output() submitEvent = new EventEmitter<EditUser>;
 
   @Input() errorMessage: string = "";
   @Input() errorOccurred: boolean = false;
@@ -34,10 +34,6 @@ export class UserFormComponent implements OnInit, OnChanges {
 
   userForm: FormGroup = this.fb.group({
     login: [this.user.login, [Validators.required]],
-    password: ['', [
-      Validators.required,
-      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/gm)]],
-    confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     name: [this.user.name, [Validators.required]],
     surname: [this.user.surname, [Validators.required]],
     address: [this.user.address, [Validators.required]],
@@ -46,11 +42,6 @@ export class UserFormComponent implements OnInit, OnChanges {
     cvv: [this.user.cvv, [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
     email: [this.user.email, [Validators.email, Validators.required]]
   });
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) =>
-      control?.value === control?.parent?.get(matchTo)?.value
-        ? null : {isMatching: true}
-  }
 
   submit(): void {
     this.invalidValuesInAnyControl = false;
@@ -58,19 +49,17 @@ export class UserFormComponent implements OnInit, OnChanges {
     Object.keys(this.userForm.controls).forEach(key => {
       const control = this.userForm.get(key);
       if (control?.errors) {
-        console.log(control)
         this.invalidValuesInAnyControl = true;
         console.log(key, control.errors);
         return;
       }
     });
     if (this.invalidValuesInAnyControl) {
-      this.invalidValuesInAnyControl = false;
       return;
     }
+    this.invalidValuesInAnyControl = false;
     this.user = {
       login: this.userForm.controls['login'].value,
-      password: this.userForm.controls['password'].value,
       name: this.userForm.controls['name'].value,
       surname: this.userForm.controls['surname'].value,
       address: this.userForm.controls['address'].value,
@@ -85,13 +74,10 @@ export class UserFormComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder) {
   }
 
-  ngOnInit(): void {
-      this.userForm.controls['password'].valueChanges.subscribe(() => {
-      this.userForm.controls['confirmPassword'].updateValueAndValidity();
-    });
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
+    if (!this.user || !this.userForm) {
+      return
+    }
     console.log(this.user)
     this.userForm.controls['login'].setValue(this.user.login);
     this.userForm.controls['name'].setValue(this.user.name);

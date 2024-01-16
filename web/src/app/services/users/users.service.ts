@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment.development";
 import {User} from "../../models/user";
-import {UserShortInfo} from "../../models/editUser";
+import {UserShortInfo} from "../../models/editUserShortInfo";
 import {Role} from "../../models/role";
 import {AccountService} from "../account/account.service";
 
