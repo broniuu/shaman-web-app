@@ -10,20 +10,24 @@
     <app-text-input [formControl]="$any(registerForm.controls['name'])" [label]="'Name'" [placeholder]="'name'"></app-text-input>
     <app-text-input [formControl]="$any(registerForm.controls['surname'])" [label]="'Surname'" [placeholder]="'surname'"></app-text-input>
     <div class="mb-3">
-      <label for="addressTextarea" class="form-label">Address</label>
-      <textarea class="form-control" id="addressTextarea" rows="3" formControlName="address"></textarea>
+      <label for="addressTextarea" class="form-label">Adres</label>
+      <textarea [class.is-invalid]="registerForm.controls['address'].invalid" class="form-control" id="addressTextarea" rows="3" formControlName="address"></textarea>
+      <div *ngIf="registerForm.controls['address'].invalid" class="invalid-feedback">Adres nie może być pusty</div>
     </div>
     <div class="mb-3">
-      <label for="ccNumberInput" class="form-label">Credit card number</label>
-      <input class="form-control" id="ccNumberInput" type="tel" autocomplete="cc-number" ccNumber formControlName="debitCardNumber">
+      <label for="ccNumberInput" class="form-label">Numer karty kredytowej</label>
+      <input [class.is-invalid]="registerForm.controls['debitCardNumber'].invalid" class="form-control" id="ccNumberInput" type="tel" autocomplete="cc-number" ccNumber formControlName="debitCardNumber">
+      <div *ngIf="registerForm.controls['debitCardNumber'].invalid" class="invalid-feedback">Nie poprawny numer karty kredytowej</div>
     </div>
     <div class="mb-3">
-      <label for="expireDateInput" class="form-label">Expire date</label>
-      <input class="form-control" id="expireDateInput" type="tel" autocomplete="cc-exp" ccExp formControlName="expireDate">
+      <label for="expireDateInput" class="form-label">Data wygaśnięcia</label>
+      <input [class.is-invalid]="registerForm.controls['expireDate'].invalid" class="form-control" id="expireDateInput" type="tel" autocomplete="cc-exp" ccExp formControlName="expireDate">
+      <div *ngIf="registerForm.controls['expireDate'].invalid" class="invalid-feedback">Niepoprawna data wygaśnięcia</div>
     </div>
     <div class="mb-3">
       <label for="cvvInput" class="form-label">CVV</label>
-      <input class="form-control" id="cvvInput" type="tel" autocomplete="off" ccCVC formControlName="cvv">
+      <input [class.is-invalid]="registerForm.controls['cvv'].invalid" class="form-control" id="cvvInput" type="tel" autocomplete="off" ccCVC formControlName="cvv">
+      <div *ngIf="registerForm.controls['cvv'].invalid" class="invalid-feedback">Niepoprawny numer CVV</div>
     </div>
     <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'Email'" [placeholder]="'name@example.com'" [type]="'email'"></app-text-input>
     <div *ngIf="invalidValuesInAnyControl" class="text-center text-danger">Pola zostały niepoprawnie wypełnione</div>

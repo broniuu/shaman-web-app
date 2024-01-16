@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CreditCardValidators} from "angular-cc-library";
 import {User} from "../../models/user";
 import {Subscription} from "rxjs";
+import {EditUser} from "../../models/editUser";
 
 @Component({
   selector: 'app-settings',
@@ -44,9 +45,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
     )
   }
 
-  editAccount(userToEdit: User) {
+  editAccount(userToEdit: EditUser) {
+    let loginChanged = userToEdit.login !== this.accountService.getLogin()
+    if (loginChanged){
+      let confirmationResult = confirm("Po edycji swoich danych będziesz musiał zalogować się ponownie")
+      if (!confirmationResult) {
+        return;
+      }
+    }
     this.accountService.updateUser(userToEdit).subscribe({
       next: () => {
+        if(loginChanged){
+          this.accountService.logout();
+          this.router.navigate(['login']);
+          return;
+        }
         this.router.navigate(['settings']).then(r =>
           this.toastService.showSuccess("Pomylnie edytowany dane użytkownika"));
       },

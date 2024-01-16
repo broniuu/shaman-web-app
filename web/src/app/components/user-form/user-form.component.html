@@ -1,28 +1,25 @@
 <form [formGroup]="userForm" class="card card-body">
   <app-text-input [formControl]="$any(userForm.controls['login'])" [label]="'Login'" [placeholder]="'login'"></app-text-input>
-  <app-text-input [formControl]="$any(userForm.controls['password'])" [label]="'Password'" [type]="'password'">
-    <div class="form-text" additional-content>
-      Your password must be 8-20 characters long, minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character (@$!%*?&).
-    </div>
-  </app-text-input>
-  <app-text-input [formControl]="$any(userForm.controls['confirmPassword'])" [label]="'Confirm Password'" [type]="'password'"></app-text-input>
-  <app-text-input [formControl]="$any(userForm.controls['name'])" [label]="'Name'" [placeholder]="'name'"></app-text-input>
-  <app-text-input [formControl]="$any(userForm.controls['surname'])" [label]="'Surname'" [placeholder]="'surname'"></app-text-input>
+  <app-text-input [formControl]="$any(userForm.controls['name'])" [label]="'Imię'" [placeholder]="'imię'"></app-text-input>
+  <app-text-input [formControl]="$any(userForm.controls['surname'])" [label]="'Nazwisko'" [placeholder]="'nazwisko'"></app-text-input>
   <div class="mb-3">
-    <label for="addressTextarea" class="form-label">Address</label>
+    <label for="addressTextarea" class="form-label">Adres</label>
     <textarea class="form-control" id="addressTextarea" rows="3" formControlName="address"></textarea>
   </div>
   <div class="mb-3">
-    <label for="ccNumberInput" class="form-label">Credit card number</label>
-    <input class="form-control" id="ccNumberInput" type="tel" autocomplete="cc-number" ccNumber formControlName="debitCardNumber">
+    <label for="ccNumberInput" class="form-label">Numer karty kredytowej</label>
+    <input [class.is-invalid]="userForm.controls['debitCardNumber'].invalid" class="form-control" id="ccNumberInput" type="tel" autocomplete="cc-number" ccNumber formControlName="debitCardNumber">
+    <div *ngIf="userForm.controls['debitCardNumber'].invalid" class="invalid-feedback">Nie poprawny numer karty kredytowej</div>
   </div>
   <div class="mb-3">
-    <label for="expireDateInput" class="form-label">Expire date</label>
-    <input class="form-control" id="expireDateInput" type="tel" autocomplete="cc-exp" ccExp formControlName="expireDate">
+    <label for="expireDateInput" class="form-label">Data wygaśnięcia</label>
+    <input [class.is-invalid]="userForm.controls['expireDate'].invalid" class="form-control" id="expireDateInput" type="tel" autocomplete="cc-exp" ccExp formControlName="expireDate">
+    <div *ngIf="userForm.controls['expireDate'].invalid" class="invalid-feedback">Niepoprawna data wygaśnięcia</div>
   </div>
   <div class="mb-3">
     <label for="cvvInput" class="form-label">CVV</label>
-    <input class="form-control" id="cvvInput" type="tel" autocomplete="off" ccCVC formControlName="cvv">
+    <input [class.is-invalid]="userForm.controls['cvv'].invalid" class="form-control" id="cvvInput" type="tel" autocomplete="off" ccCVC formControlName="cvv">
+    <div *ngIf="userForm.controls['cvv'].invalid" class="invalid-feedback">Niepoprawny numer CVV</div>
   </div>
   <app-text-input [formControl]="$any(userForm.controls['email'])" [label]="'Email'" [placeholder]="'name@example.com'" [type]="'email'"></app-text-input>
   <div *ngIf="invalidValuesInAnyControl" class="text-center text-danger">Pola zostały niepoprawnie wypełnione</div>
