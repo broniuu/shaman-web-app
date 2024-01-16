@@ -1,7 +1,7 @@
 import {AfterContentInit, AfterViewInit, Component, NgModule, OnInit} from '@angular/core';
 import {UsersService} from "../../services/users/users.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {EditUser, UserShortInfo} from "../../models/editUser";
+import {EditUserShortInfo, UserShortInfo} from "../../models/editUserShortInfo";
 import {ToastService} from "../../services/toast/toast.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatTableDataSource} from "@angular/material/table";
@@ -17,9 +17,9 @@ import {AccountService} from "../../services/account/account.service";
 })
 export class UsersComponent implements OnInit, AfterContentInit {
 
-  editUsers: EditUser[] = [];
+  editUsers: EditUserShortInfo[] = [];
   displayedColumns: string[] = ['name', 'surname', 'login', 'email', 'roles', 'action'];
-  dataSource: MatTableDataSource<EditUser>;
+  dataSource: MatTableDataSource<EditUserShortInfo>;
   rolesData: Role[];
   currentUserLogin: string = '';
 
@@ -79,11 +79,11 @@ export class UsersComponent implements OnInit, AfterContentInit {
     return role1 && role2 ? role1.roleId === role2.roleId : false;
   }
 
-  startEdit(row: EditUser) {
+  startEdit(row: EditUserShortInfo) {
     row.editable = true;
   }
 
-  confirmEditCreate(row: EditUser) {
+  confirmEditCreate(row: EditUserShortInfo) {
     //Todo: fix
     if (!row.currentData) {
       console.error('currentData is null');
@@ -129,7 +129,7 @@ export class UsersComponent implements OnInit, AfterContentInit {
     return roles.map<string>(r => `${r.name}`).join(', ');
   }
 
-  cancel(row: EditUser) {
+  cancel(row: EditUserShortInfo) {
     row.editable = false;
     Object.keys(row.validator.controls).forEach(item => {
       if (item === 'roles') {
@@ -143,7 +143,7 @@ export class UsersComponent implements OnInit, AfterContentInit {
     row.validator.controls['roles'].patchValue(row.currentData?.roles.map<any>(x => x.roleId))
   }
 
-  delete(row: EditUser, index: number) {
+  delete(row: EditUserShortInfo, index: number) {
     if (!row.currentData) {
       return;
     }

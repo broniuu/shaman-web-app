@@ -26,11 +26,13 @@ export class NavbarComponent {
       this.loggedUserName = val;
       this.logged = val !== "";
     });
-    this.accountService.getLoggedUserRoles().subscribe({
-      next: (r) => {
-        this.sharedService.loggedUserChange(this.loggedUserName, r.map<string>(r => r.name));
-      }
-    });
+    if (this.logged){
+      this.accountService.getLoggedUserRoles().subscribe({
+        next: (r) => {
+          this.sharedService.loggedUserChange(this.loggedUserName, r.map<string>(r => r.name));
+        }
+      });
+    }
     this.sharedService.loggedUserRoles.subscribe((val) => {
       this.roles = val;
     });
