@@ -9,6 +9,8 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {Role} from "../../models/role";
 import {EditUser} from "../../models/editUser";
 import {NavbarComunicationService} from "../navbar/navbar-comunication.service";
+import {ChangePassword} from "../../models/ChangePassword";
+
 
 @Injectable({
   providedIn: 'root'
@@ -78,7 +80,13 @@ export class AccountService {
   getLogin(): string | null {
     return  localStorage.getItem(AccountService.localStorageLoginKey);
   }
+  changeAccountPassword(password:ChangePassword):Observable<EditUser>{
+    var login=this.getLogin()
+    console.log(password)
+    const url = `${this.apiUrl}/${login}/user/passwordupdate`;
 
+    return this.http.post<EditUser>(url, password);
+  }
   logout() {
     localStorage.removeItem(AccountService.localStorageLoginKey);
     localStorage.removeItem(AccountService.localStorageTokenKey);

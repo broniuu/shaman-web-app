@@ -108,7 +108,16 @@ public class UserController {
         }
 
     }
+    @PostMapping(value = "{login}/user/passwordupdate")
+    public ResponseEntity<EditUserDto> updateUserPassword(@PathVariable String login, @RequestBody ChangePasswordDto changePassword) {
+        if(checkUser(login) || userService.checkIfLoggedUserHasRole("admin")){
+            EditUserDto updated = userService.updateUserPassword(login, changePassword);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
 
+    }
     @PostMapping(value = "users/update")
     public ResponseEntity<ShortUserInfoDto> updateUser(@RequestBody ShortUserInfoDto userDto) {
         if(userService.checkIfLoggedUserHasRole("admin")){

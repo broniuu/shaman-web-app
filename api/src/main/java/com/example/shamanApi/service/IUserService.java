@@ -1,9 +1,6 @@
 package com.example.shamanApi.service;
 
-import com.example.shamanApi.dto.EditUserDto;
-import com.example.shamanApi.dto.RoleDto;
-import com.example.shamanApi.dto.ShortUserInfoDto;
-import com.example.shamanApi.dto.UserDto;
+import com.example.shamanApi.dto.*;
 
 import java.util.List;
 
@@ -23,6 +20,6 @@ public interface IUserService {
     List<RoleDto> showUserRoles(String login);
 
     List<ShortUserInfoDto> showAllUsers();
-
+    public EditUserDto updateUserPassword(String login, ChangePasswordDto changePasswordDto);
     boolean checkIfLoggedUserHasRole(String roleName);
 }

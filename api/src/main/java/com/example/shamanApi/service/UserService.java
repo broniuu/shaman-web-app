@@ -1,9 +1,7 @@
 package com.example.shamanApi.service;
 
-import com.example.shamanApi.dto.EditUserDto;
-import com.example.shamanApi.dto.RoleDto;
-import com.example.shamanApi.dto.ShortUserInfoDto;
-import com.example.shamanApi.dto.UserDto;
+import com.example.shamanApi.dto.*;
+import com.example.shamanApi.exception.PasswordNotCorrectException;
 import com.example.shamanApi.exception.UserAlreadyExistException;
 import com.example.shamanApi.exception.UserNotFoundException;
 import com.example.shamanApi.model.Role;
@@ -101,7 +99,22 @@ public class UserService implements IUserService{
         userRepository.save(userToUpdate);
         return mapper.map(userToUpdate, EditUserDto.class);
     }
+    @Override
+    public EditUserDto updateUserPassword(String login, ChangePasswordDto changePasswordDto) {
 
+        User userToUpdate = userRepository.findByLogin(login);
+        if (userToUpdate == null) {
+            throw new UserNotFoundException("Nie ma użytkownika z tym loginem: "
+                    + login);
+        }
+        if(changePasswordDto.getOldPassword().equals(userToUpdate.getPassword())){
+            throw new PasswordNotCorrectException("Hasło nie poprawne dla użytkownika: "
+                    + login);
+        }
+        userToUpdate.setPassword(passwordEncoder.encode(changePasswordDto.getPassword()));
+        userRepository.save(userToUpdate);
+        return mapper.map(userToUpdate, EditUserDto.class);
+    }
     @Override
     public ShortUserInfoDto updateUser(ShortUserInfoDto userDto) {
         Optional<User> userToUpdateOptional = userRepository.findById(userDto.getUserId());

@@ -9,6 +9,7 @@ import {CreditCardValidators} from "angular-cc-library";
 import {User} from "../../models/user";
 import {Subscription} from "rxjs";
 import {EditUser} from "../../models/editUser";
+import {ChangePassword} from "../../models/ChangePassword";
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +17,7 @@ import {EditUser} from "../../models/editUser";
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-
+  changePassword:ChangePassword;
   user: User;
   errorOccurredWhenEditing = false;
   errorMessage = "";
@@ -72,7 +73,25 @@ export class SettingsComponent implements OnInit, OnDestroy {
       }
     });
   }
+  editPassword(changePassword: ChangePassword) {
+    let loginChanged = changePassword.login !== this.accountService.getLogin()
+    if (loginChanged){
 
+    }
+    this.accountService.changeAccountPassword(changePassword).subscribe({
+      next: () => {
+        this.router.navigate(['settings']).then(r =>
+          this.toastService.showSuccess("Pomylnie edytowano hasło użytkownika"));
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        let apiError: ApiError = err.error;
+        this.errorMessage = apiError.message;
+        this.errorOccurredWhenEditing = true;
+        this.toastService.showDanger("Wystąpił błąd podczas edycji hasła użytkownika");
+      }
+    });
+  }
   deleteAccount() {
     let deleteConfirmed = confirm('Czy na pewno chcesz usunąć konto?');
     if (!deleteConfirmed) {

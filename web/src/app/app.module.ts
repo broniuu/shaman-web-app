@@ -43,6 +43,8 @@ import { UsersComponent } from './components/users/users.component';
 import {MatTableModule} from "@angular/material/table";
 import { TypeSafeMatCellDef } from './directives/type-safe-mat-cell-def.directive';
 import { FormControlPipe } from './directives/formControll/form-controll.pipe';
+import {EditPasswordComponent} from "./components/edit-password/edit-password.component";
+import {MatSortModule} from "@angular/material/sort";
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { FormControlPipe } from './directives/formControll/form-controll.pipe';
     ShoppingCartComponent,
     UsersComponent,
     TypeSafeMatCellDef,
-    FormControlPipe
+    FormControlPipe,
+    EditPasswordComponent,
+    EditPasswordComponent
   ],
   providers: [
     StubTokenService,
@@ -99,6 +103,7 @@ import { FormControlPipe } from './directives/formControll/form-controll.pipe';
     NgOptimizedImage,
     BrowserAnimationsModule,
     MatTableModule,
+    MatSortModule,
   ],
   bootstrap: [AppComponent],
 })

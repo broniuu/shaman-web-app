@@ -4,12 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawki">
+    <list default="true" id="7dc18820-bb5f-4261-861c-8f86a7a4e87e" name="Changes" comment="poprawa przycisku kupowania dodawnaie do koszyka tylko gdy użytkownik jest zalogowany. dodanie obsługi entera do wyszukiwania">
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/dto/ChangePasswordDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/exception/PasswordNotCorrectException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/src/app/models/ChangePassword.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/dish/dish.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dish/dish.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/dishes/dish-item/dish-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/controler/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/controler/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/security/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/security/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/api/src/main/java/com/example/shamanApi/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/shared/navbar/navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/components/user-form/user-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/components/user-form/user-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/interceptors/jwt/jwt.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/services/account/account.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +168,8 @@
       <workItem from="1701587277327" duration="1000" />
       <workItem from="1701620638366" duration="240000" />
       <workItem from="1702304482003" duration="5873000" />
-      <workItem from="1705661873681" duration="1634000" />
+      <workItem from="1705661873681" duration="1671000" />
+      <workItem from="1705663637357" duration="6098000" />
     </task>
     <task id="LOCAL-00001" summary="restaurant dish podstawowa nawigacja i mapowanie">
       <option name="closed" value="true" />
@@ -232,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701102890733</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="poprawa przycisku kupowania dodawnaie do koszyka tylko gdy użytkownik jest zalogowany. dodanie obsługi entera do wyszukiwania">
+      <option name="closed" value="true" />
+      <created>1705663526926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705663526926</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,17 +279,7 @@
     <MESSAGE value="poprawki 2" />
     <MESSAGE value="Dodanie dania" />
     <MESSAGE value="poprawki" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawki" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/web/src/app/components/settings/settings.component.ts</url>
-          <line>41</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="poprawa przycisku kupowania dodawnaie do koszyka tylko gdy użytkownik jest zalogowany. dodanie obsługi entera do wyszukiwania" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawa przycisku kupowania dodawnaie do koszyka tylko gdy użytkownik jest zalogowany. dodanie obsługi entera do wyszukiwania" />
   </component>
 </project>

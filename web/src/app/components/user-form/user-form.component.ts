@@ -6,6 +6,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {AccountService} from "../../services/account/account.service";
 import {Router} from "@angular/router";
 import {EditUser} from "../../models/editUser";
+import {ChangePassword} from "../../models/ChangePassword";
 
 @Component({
   selector: 'user-form',
@@ -25,7 +26,6 @@ export class UserFormComponent implements OnChanges {
   };
 
   @Output() submitEvent = new EventEmitter<EditUser>;
-
   @Input() errorMessage: string = "";
   @Input() errorOccurred: boolean = false;
   @Input() submitButtonText = "Submit";

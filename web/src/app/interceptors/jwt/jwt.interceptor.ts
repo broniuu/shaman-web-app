@@ -26,6 +26,7 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
   private shouldIntercept(url: string): boolean {
-    return url.includes('save')||url.includes('usercart')||url.includes('user')||url.includes('roles');
+
+    return url.includes('save')||url.includes('usercart')||url.includes('user')||url.includes('roles')||url.includes('password');
   }
 }
