@@ -12,8 +12,8 @@
   <span class="example-spacer"></span>
   <div *ngIf="searchBarVisibility" style="align-content: center">
     <mat-form-field style="margin-top:25px;">
-      <mat-label>Search</mat-label>
-      <input matInput value="" [(ngModel)]="searchString">
+      <mat-label>Wyszukaj</mat-label>
+      <input (keyup.enter)="onEnter()" matInput value="" [(ngModel)]="searchString">
     </mat-form-field>
     <button mat-button style="margin-bottom: 20px"(click)="sendString()">  <mat-icon>search</mat-icon></button>
   </div>

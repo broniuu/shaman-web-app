@@ -6,6 +6,7 @@ import {Colors} from "../../Colors";
 import {CartService} from "../../../services/cart/cart.service";
 import {ToastService} from "../../../services/toast/toast.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {AccountService} from "../../../services/account/account.service";
 
 @Component({
   selector: 'app-dish-item',
@@ -26,6 +27,7 @@ export class DishItemComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private cartService: CartService,
+    private accountService:AccountService,
     private toastService: ToastService) {
   }
   @HostListener('window:resize', ['$event'])
@@ -37,6 +39,7 @@ export class DishItemComponent implements OnInit {
   ngOnInit(): void {
     this.screenWidth = window.innerWidth / 3;
     this.screenHeight = this.screenWidth * 0.7;
+
     this.route.paramMap
       .subscribe((params: any) => {
         let name = params.get('restaurantName');
@@ -47,6 +50,10 @@ export class DishItemComponent implements OnInit {
 
 
   addToCart(dishId: any) {
+    if(!this.accountService.isLoggedIn()){
+      this.toastService.showDanger("Zaloguj się aby dodać potrwę do koszyka.");
+      return;
+    }
     this.cartService.saveToCart(dishId, this.count).subscribe({
       next: () => {
         this.toastService.showSuccess("Dodano do koszyka");

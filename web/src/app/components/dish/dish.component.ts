@@ -7,6 +7,7 @@ import {CartService} from "../../services/cart/cart.service";
 import {ToastService} from "../../services/toast/toast.service";
 import {DishResponse} from "../../models/dishResponse";
 import {DishService} from "../../services/dish/dish.service";
+import {AccountService} from "../../services/account/account.service";
 
 @Component({
   selector: 'app-dish',
@@ -25,6 +26,7 @@ export class DishComponent implements OnInit {
     private router: Router,
     private dishService:DishService,
     private cartService: CartService,
+    private accountService:AccountService,
     private toastService: ToastService) {
   }
 
@@ -50,7 +52,10 @@ export class DishComponent implements OnInit {
     this.checkAndUnlock()
   }
   addToCart(dishId: any) {
-
+  if(!this.accountService.isLoggedIn()){
+    this.toastService.showDanger("Zaloguj sie, aby dodać danie do koszyka.");
+    return;
+  }
     this.cartService.saveToCart(dishId, this.count).subscribe({
       next: () => {
         this.toastService.showSuccess("Dodano do koszyka");

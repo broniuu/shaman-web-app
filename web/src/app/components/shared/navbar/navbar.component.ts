@@ -103,4 +103,14 @@ export class NavbarComponent {
   }
 
   protected readonly Colors = Colors;
+
+  onEnter() {
+    if(this.searchString){
+      this.sharedService.setSearch(this.searchString.valueOf());
+      this.sharedService.filterFunction();
+    }else{
+      this.sharedService.setSearch("");
+      this.sharedService.filterFunction();
+    }
+  }
 }
