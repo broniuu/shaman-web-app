@@ -23,7 +23,10 @@ export class UsersComponent implements OnInit, AfterContentInit {
   rolesData: Role[];
   currentUserLogin: string = '';
 
-  constructor(private usersService: UsersService, private toastService: ToastService) {
+  constructor(private usersService: UsersService,
+              private toastService: ToastService,
+              private accountService: AccountService,
+              private router: Router) {
     this.currentUserLogin = localStorage.getItem(AccountService.localStorageLoginKey) ?? '';
   }
 
@@ -35,12 +38,38 @@ export class UsersComponent implements OnInit, AfterContentInit {
       surname: new FormControl(e.surname, Validators.required),
       roles: new FormControl(e.roles.map<string>(x => x.roleId), Validators.required),
     });
+    this.usersService.getAllRoles().subscribe({
+      next: (roles) => {
+        this.rolesData = roles.sort((a, b) => a.name <= b.name ? 1 : -1);
+        console.log('roles', roles)
+      },
+      error: (err: HttpErrorResponse) => {
+        let apiError = err.error;
+        let errorMessage = apiError.message;
+        this.toastService.showDanger(errorMessage);
+        console.log(err);
+      }
+    });
     this.usersService.getAll().subscribe({
       next: (users) => {
         users.forEach(u =>
           this.editUsers.push({
-            currentData: u,
-            originalData: u,
+            currentData: {
+              userId: u.userId,
+              login: u.login,
+              email: u.email,
+              roles: u.roles,
+              surname: u.surname,
+              name: u.name
+            },
+            originalData: {
+              userId: u.userId,
+              login: u.login,
+              email: u.email,
+              roles: u.roles,
+              surname: u.surname,
+              name: u.name
+            },
             editable: false,
             validator: editForm(u)
           }))
@@ -55,28 +84,12 @@ export class UsersComponent implements OnInit, AfterContentInit {
         console.log(err);
       }
     });
-    this.usersService.getAllRoles().subscribe({
-      next: (roles) => {
-        this.rolesData = roles
-        console.log('roles', roles)
-      },
-      error: (err: HttpErrorResponse) => {
-        let apiError = err.error;
-        let errorMessage = apiError.message;
-        this.toastService.showDanger(errorMessage);
-        console.log(err);
-      }
-    });
   }
 
   ngAfterContentInit(): void {
     for (const u of this.editUsers) {
       u.editable = false;
     }
-  }
-
-  public compareRoles(role1: Role, role2: Role) {
-    return role1 && role2 ? role1.roleId === role2.roleId : false;
   }
 
   startEdit(row: EditUserShortInfo) {
@@ -103,16 +116,32 @@ export class UsersComponent implements OnInit, AfterContentInit {
             mappedRoles.push(role);
           }
         }
+
         row.currentData[key] = mappedRoles;
         return;
       }
       row.currentData[key] = row.validator.controls[item].value;
     });
+    let updateAndLogout = false;
+    console.log('current', row.currentData['roles'] );
+    console.log('original', row.originalData['roles'] );
+    if (!this.compareRoles(row.currentData['roles'], row.originalData['roles']) && row.originalData.login === this.currentUserLogin) {
+
+      updateAndLogout = confirm("Zamierzasz zmienić swoje role. Po tej akcji będziesz musiał zalogować się ponownie.");
+      if (!updateAndLogout) {
+        return;
+      }
+    }
+
     this.usersService.modifyUser(row.currentData).subscribe({
         next: (u) => {
           row.originalData = u;
           row.editable = false;
           this.toastService.showSuccess("pomyślnie edytowano");
+          if (updateAndLogout) {
+            this.accountService.logout();
+            this.router.navigate(['/login']);
+          }
         },
         error: (err: HttpErrorResponse) => {
           let errorMessage: string = err.error.message;
@@ -120,6 +149,16 @@ export class UsersComponent implements OnInit, AfterContentInit {
         }
       }
     );
+  }
+
+  private compareRoles(roles1: Role[], roles2: Role[]) {
+    if (roles1.length !== roles2.length){
+      return false;
+    }
+    let missingRoles = roles1.filter(r1 =>
+      !roles2.some(r2 =>
+        r1.roleId === r2.roleId));
+    return missingRoles.length === 0;
   }
 
   formatRoles(roles: Role[] | undefined) {

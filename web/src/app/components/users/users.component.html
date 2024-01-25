@@ -54,7 +54,7 @@
         <ng-template #other_content>
           <mat-form-field>
             <mat-select [formControl]="$any(row.validator).get('roles')"
-                        [compareWith]="compareRoles" multiple>
+                         [multiple]="true">
               <mat-option [disabled]="!row.editable" *ngFor="let role of this.rolesData"
                           [value]="role.roleId">{{ role.name }}
               </mat-option>
@@ -78,7 +78,7 @@
               <button *ngIf="row.editable" mat-icon-button color="warn" focusable="false" (click)="cancel(row)">
                 <mat-icon>close</mat-icon>
               </button>
-              <button *ngIf="!row.editable" mat-icon-button color="warn" focusable="false" (click)="delete(row, i)">
+              <button *ngIf="!row.editable && row.originalData.login !== currentUserLogin" mat-icon-button color="warn" focusable="false" (click)="delete(row, i)">
                 <mat-icon>delete</mat-icon>
               </button>
             </span>
